@@ -1,3 +1,3 @@
 # Damjan
-# My first repository.
-# And my first code_skriptapp20
+# My first repositor and my first code skriptapp20. 
+# Stepping stone to something new ni life.
