@@ -1,5 +1,8 @@
 drop database if exists edunovapp20;
-create database edunovapp20;
+create database edunovapp20 default character set utf8;
+# ovu sljedeću liniju copy/psate u command prompt
+# PRIPAZITI SAMO NA PUTANJU DATOTEKE
+# c:\xampp\mysql\bin\mysql.exe -uedunova -pedunova --default_character_set=utf8 < f:\skriptapp20.sql
 use edunovapp20;
 create table smjer(
 sifra       int not null primary key auto_increment,
