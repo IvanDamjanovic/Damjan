@@ -1,6 +1,7 @@
 drop database if exists samostan;
 create database samostan;
 use samostan;
+#CHARSET --default_character_set=utf8 
 
 create table svecenik(
     sifra       int not null primary key auto_increment,
