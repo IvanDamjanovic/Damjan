@@ -59,5 +59,15 @@ insert into vrsta (sifra,ime,istrazivac,ugrozenost) values
 (null,'Rupicapra rupicapra',1,3),
 (null,'Talpa cf. europea',1,5),
 (null,'Plecotus austriacus',3,5),
-(null,'Myotis capaccinii',4,5),
-(null,'Miniopterus schreibersii',5,5);
+(null,'Myotis capaccinii',4,5);
+
+insert into vrsta (sifra,ime,istrazivac,ugrozenost) values
+(null,'Myotis bechsteinii',5,6),
+(null,'Delphinus delphis',1,9),
+(null,'Lutra lutra',1,9),
+(null,'Nyctalus leisleri',5,7),
+(null,'Sciurus vulgaris',1,7),
+(null,'Cricetus cricetus',1,7),
+(null,'Canis lupus',1,7),
+(null,'Ursus arctos',1,7),
+(null,'Glis glis',1,8);
