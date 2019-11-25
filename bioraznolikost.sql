@@ -1,5 +1,6 @@
 drop database if exists bioraznolikost;
 create database bioraznolikost;
+# c:\xampp\mysql\bin\mysql.exe -uedunova -pedunova --default_character_set=utf8 < C:\Users\Damjan\Documents\GitHub\EDUNOVA\bioraznolikost.sql
 use bioraznolikost;
 
 create table istrazivac(
@@ -32,6 +33,11 @@ insert into istrazivac (sifra,ime,prezime) values
 (null,'Alexandr','Fischer'),
 (null,'Charles Lucien','Bonaparte'),
 (null,'Heinrich','Kuhl');
+
+insert into istrazivac (sifra,prezime) values
+(null,'Montagu'),
+(null,'Peters'),
+(null,'Blasisus');
 
 describe ugrozenost;
 select * from ugrozenost;
