@@ -4,35 +4,36 @@ create database crvenaknjiga;
 use crvenaknjiga;
 
 create table istrazivac(
-    sifra           int not null primary key auto_increment,
-    ime             varchar(50),
-    prezime         varchar(50),
-    username        varchar(100),
-    institucija     varchar(50)
+    sifra               int not null primary key auto_increment,
+    ime                 varchar(50),
+    prezime             varchar(50),
+    username            varchar(100),
+    institucija         varchar(50),
+    vanjskapoveznica    varchar(100)
 );
 
 create table taksonom(
-    sifra           int not null primary key auto_increment,
-    ime             varchar(50),
-    prezime         varchar(50)
+    sifra               int not null primary key auto_increment,
+    ime                 varchar(50),
+    prezime             varchar(50)
 );
 
 create table ugrozenost(
-    sifra           int not null primary key auto_increment,
-    naziv           char(2)
+    sifra               int not null primary key auto_increment,
+    naziv               char(2)
 );
 
 create table vrsta(
-    sifra           int not null primary key auto_increment,
-    ime             varchar(50),
-    istrazivac      int,
-    ugrozenost      int not null,
-    taksonom        int not null
+    sifra               int not null primary key auto_increment,
+    ime                 varchar(50),
+    istrazivac          int,
+    ugrozenost          int not null,
+    taksonom            int not null
 );
 
 create table istrazivanje(
-    vrsta           int not null,
-    istrazivac      int not null
+    vrsta               int not null,
+    istrazivac          int not null
 );
 
 alter table vrsta add foreign key (istrazivac) references istrazivac(sifra);
