@@ -3,10 +3,17 @@ create database bioraznolikost;
 # c:\xampp\mysql\bin\mysql.exe -uedunova -pedunova --default_character_set=utf8 < C:\Users\Damjan\Documents\GitHub\EDUNOVA\bioraznolikost.sql
 use bioraznolikost;
 
-create table istrazivac(
+create table taksonom(
     sifra       int not null primary key auto_increment,
     ime         varchar(50),
     prezime     varchar(50)
+);
+
+create table istrazivac(
+    sifra       int not null primary key auto_increment,
+    ime         varchar(50),
+    prezime     varchar(50),
+    username    varchar(100)
 );
 
 create table ugrozenost(
@@ -21,20 +28,22 @@ create table vrsta(
     ugrozenost  int not null
 );
 
-alter table vrsta add foreign key (istrazivac) references istrazivac(sifra);
+alter table vrsta add foreign key (taksonom) references taksonom(sifra);
 alter table vrsta add foreign key (ugrozenost) references ugrozenost(sifra);
 
-describe istrazivac;
-select * from istrazivac;
+alter table vrsta add foreign key (istrazivac) references istrazivac(sifra);
 
-insert into istrazivac (sifra,ime,prezime) values
+describe taksonom;
+select * from taksonom;
+
+insert into taksonom (sifra,ime,prezime) values
 (null,'Carl','Linnaeus'),
 (null,'Carl','Hermann'),
 (null,'Alexandr','Fischer'),
 (null,'Charles Lucien','Bonaparte'),
 (null,'Heinrich','Kuhl');
 
-insert into istrazivac (sifra,prezime) values
+insert into taksonom (sifra,prezime) values
 (null,'Montagu'),
 (null,'Peters'),
 (null,'Blasisus');
@@ -56,7 +65,7 @@ insert into ugrozenost (sifra,naziv) values
 describe vrsta;
 select * from vrsta;
 
-insert into vrsta (sifra,ime,istrazivac,ugrozenost) values
+insert into vrsta (sifra,ime,taksonom,ugrozenost) values
 (null,'Spermophilus citelus',1,3),
 (null,'Mustela lutreola',1,3),
 (null,'Monachus monachus',2,3),
@@ -67,7 +76,7 @@ insert into vrsta (sifra,ime,istrazivac,ugrozenost) values
 (null,'Plecotus austriacus',3,5),
 (null,'Myotis capaccinii',4,5);
 
-insert into vrsta (sifra,ime,istrazivac,ugrozenost) values
+insert into vrsta (sifra,ime,taksonom,ugrozenost) values
 (null,'Myotis bechsteinii',5,6),
 (null,'Delphinus delphis',1,9),
 (null,'Lutra lutra',1,9),
