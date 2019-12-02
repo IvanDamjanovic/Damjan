@@ -9,13 +9,8 @@ create table istrazivac(
     prezime             varchar(50),
     username            varchar(100),
     institucija         varchar(50),
-    vanjskapoveznica    varchar(100)
-);
-
-create table taksonom(
-    sifra               int not null primary key auto_increment,
-    ime                 varchar(50),
-    prezime             varchar(50)
+    vanjskapoveznica    varchar(100),
+    taksonom            boolean
 );
 
 create table ugrozenost(
@@ -26,9 +21,9 @@ create table ugrozenost(
 create table vrsta(
     sifra               int not null primary key auto_increment,
     ime                 varchar(50),
+    kategorija          varchar(50),
     istrazivac          int,
-    ugrozenost          int not null,
-    taksonom            int not null
+    ugrozenost          int
 );
 
 create table istrazivanje(
@@ -38,22 +33,9 @@ create table istrazivanje(
 
 alter table vrsta add foreign key (istrazivac) references istrazivac(sifra);
 alter table vrsta add foreign key (ugrozenost) references ugrozenost(sifra);
-alter table vrsta add foreign key (taksonom) references taksonom(sifra);
 
 alter table istrazivanje add foreign key (vrsta) references vrsta(sifra);
 alter table istrazivanje add foreign key (istrazivac) references istrazivac(sifra);
-
-describe taksonom;
-select * from taksonom;
-insert into taksonom (sifra,prezime) values
-    (null,'Linnaeus'),
-    (null,'Hermann'),
-    (null,'Fischer'),
-    (null,'Bonaparte'),
-    (null,'Kuhl'),
-    (null,'Montagu'),
-    (null,'Peters'),
-    (null,'Blasisus');
 
 describe ugrozenost;
 select * from ugrozenost;
@@ -75,22 +57,27 @@ insert into istrazivac (sifra,ime,prezime,username,institucija) values
 
 describe vrsta;
 select * from vrsta;
-insert into vrsta (sifra,ime,taksonom,ugrozenost) values
-    (null,'Spermophilus citelus',1,3),
-    (null,'Mustela lutreola',1,3),
-    (null,'Monachus monachus',2,3),
-    (null,'Castor fiber',1,3),
-    (null,'Lynx lynx',1,3),
-    (null,'Rupicapra rupicapra',1,3),
-    (null,'Talpa cf. europea',1,5),
-    (null,'Plecotus austriacus',3,5),
-    (null,'Myotis capaccinii',4,5),
-    (null,'Myotis bechsteinii',5,6),
-    (null,'Delphinus delphis',1,9),
-    (null,'Lutra lutra',1,9),
-    (null,'Nyctalus leisleri',5,7),
-    (null,'Sciurus vulgaris',1,7),
-    (null,'Cricetus cricetus',1,7),
-    (null,'Canis lupus',1,7),
-    (null,'Ursus arctos',1,7),
-    (null,'Glis glis',1,8);
+insert into vrsta (sifra,ime,ugrozenost) values
+    (null,'Spermophilus citelus',3),
+    (null,'Mustela lutreola',3),
+    (null,'Monachus monachus',3),
+    (null,'Castor fiber',3),
+    (null,'Lynx lynx',3),
+    (null,'Rupicapra rupicapra',3),
+    (null,'Talpa cf. europea',5),
+    (null,'Plecotus austriacus',5),
+    (null,'Myotis capaccinii',5),
+    (null,'Myotis bechsteinii',6),
+    (null,'Delphinus delphis',9),
+    (null,'Lutra lutra',9),
+    (null,'Nyctalus leisleri',7),
+    (null,'Sciurus vulgaris',7),
+    (null,'Cricetus cricetus',7),
+    (null,'Canis lupus',7),
+    (null,'Ursus arctos',7),
+    (null,'Glis glis',8);
+
+update vrsta
+set kategorija = 'sisavac' 
+where sifra >= 1 and sifra > 18;
+
