@@ -1,4 +1,4 @@
 # EDUNOVA
-# App database_crvenaknjiga.sql
+# App database crvenaknjiga.sql
 # update crvenaknjiga.sql
 # add crvenaknjiga_ERA
