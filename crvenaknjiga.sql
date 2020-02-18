@@ -1,7 +1,24 @@
 drop database if exists crvenaknjiga;
-create database crvenaknjiga default character set utf8;
+create database crvenaknjiga;
 
 use crvenaknjiga;
+
+create table operater(
+sifra       int not null primary key auto_increment,
+email       varchar(50) not null,
+lozinka     char(60) not null,
+ime         varchar(50) not null,
+prezime     varchar(50) not null,
+uloga       varchar(20) not null
+);
+insert into operater values 
+(null,'istrazivac@redbook.hr',
+'$2y$10$AzFzPK10Gi3nYBfpVKGYPeiyeQ8JOQOkfGJJ1jKJnQ.2hacJ2iwBi',
+'Redbook','Operater','oper');
+insert into operater values 
+(null,'admin@redbook.hr',
+'$2y$10$AzFzPK10Gi3nYBfpVKGYPeiyeQ8JOQOkfGJJ1jKJnQ.2hacJ2iwBi',
+'Redbook','Administrator','admin');
 
 create table istrazivac(
     sifra               int not null primary key auto_increment,
