@@ -1,5 +1,5 @@
 drop database if exists crvenaknjiga;
-create database crvenaknjiga;
+create database crvenaknjiga default character set utf8;
 
 use crvenaknjiga;
 
