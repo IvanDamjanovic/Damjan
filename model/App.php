@@ -13,7 +13,7 @@ class App
 
         $klasa='';
         if(!isset($djelovi[1]) || $djelovi[1]===''){
-            $klasa='index';
+            $klasa='Index';
         }else{
             $klasa=ucfirst($djelovi[1]);
         }

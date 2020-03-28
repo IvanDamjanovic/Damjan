@@ -1,15 +1,7 @@
 <?php
 
-class IndexController
+class IndexController extends Controller
 {
-
-    private $view;
-
-    public function __construct()
-    {
-        $this->view = new View();
-    }
-
 
     public function prijava()
     {
@@ -18,7 +10,6 @@ class IndexController
             'email'=>''
         ]);
     }
-
 
     public function autorizacija()
     {
@@ -31,17 +22,28 @@ class IndexController
             return;
         }
 
-        $veza = new PDO('mysql:host=localhost;dbname=crvenaknjiga;charset=utf8',
-        'edunova','edunova');
-        //sql INJECTION PROBLEM
+        if(trim($_POST['email'])==='' || 
+        trim($_POST['lozinka'])===''){
+            $this->view->render('prijava',[
+                'poruka'=>'Pristupni podaci obavezno',
+                'email'=>$_POST['email']
+            ]);
+            return;
+        }
+
+        //$veza = new PDO('mysql:host=localhost;dbname=redbook;charset=utf8',
+        //'edunova','edunova');
+
+        $veza = DB::getInstanca();
+
+        	    //sql INJECTION PROBLEM
         //$veza->query('select lozinka from operater 
         //              where email=\'' . $_POST['email'] . '\';');
-
-        $izraz = $veza->prepare('select * from operater
-                        where email=:email;');
+        $izraz = $veza->prepare('select * from istrazivac 
+                      where email=:email;');
         $izraz->execute(['email'=>$_POST['email']]);
-        $rezultat=$izraz->fetch(PDO::FETCH_OBJ);
-
+        //$rezultat=$izraz->fetch(PDO::FETCH_OBJ);
+        $rezultat=$izraz->fetch();
         if($rezultat==null){
             $this->view->render('prijava',[
                 'poruka'=>'Ne postojeći korisnik',
@@ -57,13 +59,20 @@ class IndexController
             ]);
             return;
         }
-
         unset($rezultat->lozinka);
-        $_SESSION['operater']=$rezultat;
-        $this->view->render('privatno' . DIRECTORY_SEPARATOR . 'nadzornaPloca');
+        $_SESSION['istrazivac']=$rezultat;
+        //$this->view->render('privatno' . DIRECTORY_SEPARATOR . 'nadzornaPloca');
+        $npc = new NadzornaplocaController();
+        $npc->index();
     }
 
-    
+    public function odjava()
+    {
+        unset($_SESSION['istrazivac']);
+        session_destroy();
+        $this->index();
+    }
+
     public function index()
     {
         $poruka='hello iz kontrolera';
@@ -86,10 +95,16 @@ class IndexController
     {
         $niz=[];
         $s=new stdClass();
-        $s->naziv='Popis ugroženih vrsta';
+        $s->naziv='PHP programiranje';
         $s->sifra=1;
         $niz[]=$s;
         //$this->view->render('onama',$niz);
         echo json_encode($niz);
     }
+
+    public function test()
+    {
+     echo password_hash('e',PASSWORD_BCRYPT);
+      // echo md5('mojaMala'); NE KORISTITI
+    } 
 }

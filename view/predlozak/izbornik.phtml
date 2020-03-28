@@ -1,0 +1,47 @@
+<!-- Početak izbornik -->
+<div class="title-bar" data-responsive-toggle="example-animated-menu" data-hide-for="medium">
+<button class="menu-icon" type="button" data-toggle></button>
+<div class="title-bar-title"><?php echo APP::config('nazivAPP'); ?></div>
+</div>
+<div class="top-bar" id="example-animated-menu" data-animate="hinge-in-from-top spin-out">
+    <div class="top-bar-left">
+        <ul class="dropdown menu" data-dropdown-menu>
+            <li class="menu-text show-for-large">
+            <?php echo APP::config('nazivAPP'); ?>
+            </li>
+            <li><a href="/">Početna</a></li>
+            <?php if(isset($_SESSION['istrazivac'])):?>
+                <li><a href="/nadzornaploca/index">Nadzorna ploča</a></li>
+                <li>
+                    <a href="#">Projekti</a>
+                    <ul class="vertical menu">
+                        <li><a href="#">Vrsta/Istrazivac</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="/vrsta/index">Vrste</a>
+                </li>
+                <?php if($_SESSION['istrazivac']->uloga==='admin'):?>
+                    <li><a href="/istrazivac/index">Istrazivaci</a></li>
+                <?php else:?>
+                    <li><a href="/nadzornaploca/profil">Profil</a></li>
+                <?php endif;?>
+            <?php endif;?>
+            <li><a href="/index/onama">O nama</a></li>
+        </ul>
+    </div>
+    <div class="top-bar-right">
+        <ul class="menu">
+            <li>
+            <?php if(!isset($_SESSION['istrazivac'])): ?>
+                <a href="/index/prijava">Prijava</a>
+            <?php else:?>
+                <a href="/index/odjava">Odjavi 
+                <?php echo $_SESSION['istrazivac']->ime . 
+                ' ' . $_SESSION['istrazivac']->prezime; ?></a>
+            <?php endif;?>
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- Kraj izbornik -->

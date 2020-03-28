@@ -1,34 +1,40 @@
-drop database if exists crvenaknjiga;
-create database crvenaknjiga;
+drop database if exists redbook;
+create database redbook default character set utf8;
+# ovu sljedeću liniju copy/paste u command prompt
+# PRIPAZITI SAMO NA PUTANJU DATOTEKE
+# c:\xampp\mysql\bin\mysql.exe -uedunova -pedunova --default_character_set=utf8 < D:\PP20\redbook.hr\redbook.sql
 
-use crvenaknjiga;
+# BACKUP
+# c:\xampp\mysql\bin\mysqldump.exe -uedunova -pedunova redbook > d:\redbook.sql
 
-create table operater(
-sifra       int not null primary key auto_increment,
-email       varchar(50) not null,
-lozinka     char(60) not null,
-ime         varchar(50) not null,
-prezime     varchar(50) not null,
-uloga       varchar(20) not null
-);
-insert into operater values 
-(null,'istrazivac@redbook.hr',
-'$2y$10$AzFzPK10Gi3nYBfpVKGYPeiyeQ8JOQOkfGJJ1jKJnQ.2hacJ2iwBi',
-'Redbook','Operater','oper');
-insert into operater values 
-(null,'admin@redbook.hr',
-'$2y$10$AzFzPK10Gi3nYBfpVKGYPeiyeQ8JOQOkfGJJ1jKJnQ.2hacJ2iwBi',
-'Redbook','Administrator','admin');
+use redbook;
 
 create table istrazivac(
-    sifra               int not null primary key auto_increment,
-    ime                 varchar(50),
-    prezime             varchar(50),
-    username            varchar(100),
-    institucija         varchar(50),
-    vanjskapoveznica    varchar(100),
-    taksonom            boolean
+sifra       		int not null primary key auto_increment,
+email       		varchar(50) not null,
+lozinka     		char(60) not null,
+ime         		varchar(50) not null,
+prezime     		varchar(50) not null,
+uloga       		varchar(20) not null
 );
+
+
+insert into istrazivac values 
+(null,'admin@redbook.hr',
+'$2y$10$AzFzPK10Gi3nYBfpVKGYPeiyeQ8JOQOkfGJJ1jKJnQ.2hacJ2iwBi',
+'Ivan','Damjanović','admin');
+
+
+insert into istrazivac values 
+(null,'istrazivac@redbook.hr',
+'$2y$10$AzFzPK10Gi3nYBfpVKGYPeiyeQ8JOQOkfGJJ1jKJnQ.2hacJ2iwBi',
+'Redbook','Istrazivac','istrazivac');
+
+insert into istrazivac values
+(null,'vrozac@gmail.com',
+'$2y$10$AzFzPK10Gi3nYBfpVKGYPeiyeQ8JOQOkfGJJ1jKJnQ.2hacJ2iwBi',
+'Vlatko','Rožac','istrazivac');
+
 
 create table ugrozenost(
     sifra               int not null primary key auto_increment,
@@ -67,10 +73,7 @@ insert into ugrozenost (sifra,naziv) values
     (null,'LC'),
     (null,'DD');
 
-describe istrazivac;
-select * from istrazivac;
-insert into istrazivac (sifra,ime,prezime,username,institucija) values
-    (null,'Vlatko','Rožac','vrozac','JUPPKR');
+
 
 describe vrsta;
 select * from vrsta;
@@ -97,4 +100,3 @@ insert into vrsta (sifra,ime,ugrozenost) values
 update vrsta
 set kategorija = 'sisavac' 
 where sifra >= 1 and sifra > 18;
-

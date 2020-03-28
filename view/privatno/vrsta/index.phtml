@@ -1,0 +1,19 @@
+<a class="success button expanded" href="#">Dodaj novu vrstu</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>Ime</th>
+            <th>Kategorija</th>
+            <th>istrazivac</th>
+            <th>Ugrozenost</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php 
+        foreach($podaci as $red){
+            include 'tablicaStavka.phtml';
+        }
+        ?>
+    </tbody>
+</table>
