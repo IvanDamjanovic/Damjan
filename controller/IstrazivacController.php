@@ -1,6 +1,6 @@
 <?php
 
-class IstrazivacController extends IndexController
+class IstrazivacController extends AdminController
 {
     public function index()
     {
