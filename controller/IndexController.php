@@ -95,7 +95,7 @@ class IndexController extends Controller
     {
         $niz=[];
         $s=new stdClass();
-        $s->naziv='PHP programiranje';
+        $s->naziv='istrazivanje';
         $s->sifra=1;
         $niz[]=$s;
         //$this->view->render('onama',$niz);

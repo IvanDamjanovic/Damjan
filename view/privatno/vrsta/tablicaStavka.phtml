@@ -1,13 +1,14 @@
 <tr>
     <td title="naziv">
     <i class="fas fa-certificate" <?php 
-    if(!$red->verificiran){
+    /*if(!$red->verificiran){
         echo 'style="color: gray" title="NIJE VERIFICIRAN"';
     }else{
         echo 'title="VERIFICIRAN"';
-    }
+    }*/
     ?>></i>
     
+
     <span style="font-size: 1.4em;"><?php echo $red->ime?></span></td>
     <td style="text-align: right;" title="kategorija"><?php echo $red->kategorija?></td>
     <td style="text-align: right;" title="istrazivac"><?php echo $red->istrazivac?></td>
