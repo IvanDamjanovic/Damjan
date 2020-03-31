@@ -97,6 +97,18 @@ insert into vrsta (sifra,ime,ugrozenost) values
     (null,'Ursus arctos',7),
     (null,'Glis glis',8);
 
-update vrsta
-set kategorija = 'sisavac' 
-where sifra >= 1 and sifra > 18;
+update vrsta 
+set kategorija = 'Šišmiš' 
+where ime = 'Myotis capaccinii';
+update vrsta 
+set kategorija = 'Šišmiš'
+where ime = 'Myotis bechsteinii';
+update vrsta 
+set kategorija = 'Šišmiš'
+where ime = 'Nyctalus leisleri';
+update vrsta 
+set kategorija = 'Šišmiš'
+where ime = 'Plecotus austriacus';
+update vrsta 
+set kategorija = 'Glodavac' 
+where ime = 'Spermophilus citelus';
