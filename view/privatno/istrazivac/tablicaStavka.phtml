@@ -3,6 +3,6 @@
     <td><?php echo $red->email?></td>
     <td>
         <a href="/istrazivac/promjena?sifra=<?php echo $red->sifra?>"><i title="Promjeni" class="fas fa-edit fa-2x"></i></a> 
-        <a href="/istrazivac/obrisi?sifra=<?php echo $red->sifra?>"><i title="Obriši" class="fas fa-trash fa-2x" style="color: red;"></i></a>
+        <a onclick="return confirm('Sigurno obrisati <?php echo $red->ime . ' ' . $red->prezime ?> ');" href="/istrazivac/obrisi?sifra=<?php echo $red->sifra?>"><i title="Obriši" class="fas fa-trash fa-2x" style="color: red;"></i></a>
     </td>
 </tr>
