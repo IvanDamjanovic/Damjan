@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'nazivAPP' => 'Red Book',
+    'nazivAPP' => 'RedBook',
     'url' => 'http://redbook.hr/',
     'dev' => true,
     'db' =>[

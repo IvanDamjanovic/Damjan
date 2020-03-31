@@ -2,12 +2,23 @@
 
 class Istrazivac
 {
-    public static function read()
+    public static function readAll()
     {
         $veza = DB::getInstanca();
-        $izraz = $veza->prepare('select * from istrazivac');
+        $izraz = $veza->prepare('select sifra,
+        ime, prezime, uloga, email from istrazivac');
         $izraz->execute();
         return $izraz->fetchAll();
+    }
+
+    public static function read($sifra)
+    {
+        $veza = DB::getInstanca();
+        $izraz = $veza->prepare('select sifra, 
+        ime, prezime, uloga, email from istrazivac
+        where sifra=:sifra');
+        $izraz->execute(['sifra'=>$sifra]);
+        return $izraz->fetch();
     }
 
     public static function create()
@@ -36,10 +47,21 @@ class Istrazivac
     {
         try{
             $veza = DB::getInstanca();
-            $izraz = $veza->prepare('delete from istrazivac were sifra=:sifra');
+            $izraz=$veza->prepare('delete from istrazivac 
+            where sifra=:sifra');
             $izraz->execute($_GET);
-        }catch(PDOExeption $e){
+        }catch(PDOException $e){
             echo $e->getMessage();
+            return false;
         }
+        return true;
+    }
+
+    public static function update(){
+        $veza = DB::getInstanca();
+        $izraz=$veza->prepare('update istrazivac 
+        set email=:email,ime=:ime,
+        prezime=:prezime,uloga=:uloga where sifra=:sifra');
+        $izraz->execute($_POST);
     }
 }

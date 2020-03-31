@@ -1,35 +1,35 @@
 <form class="log-in-form" method="POST"
-action="/istrazivac/dodajnovi">
+action="/istrazivac/promjeni">
  <label>Email
     <input type="email" id="email" name="email" value="<?php 
-    echo isset($_POST['email']) ? $_POST['email'] : '' 
+    echo $istrazivac->email;
     ?>">
   </label>
-
-  <label>Password
-    <input type="password" id="lozinka" name="lozinka">
-  </label>
-
-  <label>Password ponovo
-    <input type="password" id="lozinkaponovo" name="lozinkaponovo">
-  </label>
-
+  
   <label>Ime
     <input type="text" id="ime" name="ime" value="<?php 
-    echo isset($_POST['ime']) ? $_POST['ime'] : '' 
+    echo $istrazivac->ime;
     ?>">
   </label>
 
   <label>Prezime
     <input type="text" id="prezime" name="prezime" value="<?php 
-    echo isset($_POST['prezime']) ? $_POST['prezime'] : '' 
+    echo $istrazivac->prezime;
     ?>">
   </label>
 
   <label for="uloga">Uloga</label>
   <select name="uloga" id="uloga">
-    <option value="istrazivac">Istraživač</option>
-    <option value="admin">Administrator</option>
+    <option <?php 
+    if($istrazivac->uloga==='istrazivac'){
+      echo ' selected="selected" ';
+    }
+    ?> value="istrazivac">Istrazivac</option>
+    <option <?php 
+    if($istrazivac->uloga==='admin'){
+      echo ' selected="selected" ';
+    }
+    ?> value="admin">Administrator</option>
   </select>
 
   <div class="grid-x grid-margin-x">
@@ -37,9 +37,10 @@ action="/istrazivac/dodajnovi">
       <a href="/istrazivac/index" class="alert button expanded">Odustani</a>
     </div>
     <div class="large-6 cell">
-      <input type="submit" class="button expanded" value="Dodaj istraživača"></input>
+      <input type="submit" class="button expanded" value="Promjeni istrazivaca"></input>
     </div>
   </div>
-  
+  <input type="hidden" name="sifra" 
+  value="<?php echo $istrazivac->sifra ?>">
 </form>
 <?php echo $poruka; ?>

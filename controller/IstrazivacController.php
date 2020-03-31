@@ -10,7 +10,7 @@ class IstrazivacController extends AdminController
     public function index()
     {
         $this->view->render($this->viewDir . 'index',[
-            'podaci'=>istrazivac::read()
+         'podaci'=>Istrazivac::readAll()
      ]);
     }
 
@@ -33,6 +33,26 @@ class IstrazivacController extends AdminController
         //prvo dođu silne kontrole
         Istrazivac::delete();
         //$this->index();
+        header('location: /istrazivac/index');
+    }
+
+    public function promjena()
+    {
+        $istrazivac = Istrazivac::read($_GET['sifra']);
+        if(!$istrazivac){
+            $this->index();
+            exit;
+        }
+
+        $this->view->render($this->viewDir . 'promjena',
+        ['istrazivac'=>$istrazivac,
+            'poruka'=>'Promjenite željene podatke']
+    );
+    }
+
+    public function promjeni()
+    {
+        Istrazivac::update();
         header('location: /istrazivac/index');
     }
 }
