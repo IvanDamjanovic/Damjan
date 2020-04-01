@@ -6,7 +6,7 @@ class Istrazivac
     {
         $veza = DB::getInstanca();
         $izraz = $veza->prepare('select sifra,
-        ime, prezime, uloga, email from istrazivac');
+        ime, prezime, uloga, email from istrazivac where sifra>1');
         $izraz->execute();
         return $izraz->fetchAll();
     }

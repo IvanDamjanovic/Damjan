@@ -1,0 +1,28 @@
+<form class="log-in-form" method="POST"
+action="/vrsta/dodajnovi">
+ <label>Ime
+    <input type="text" id="ime" name="ime" value="">
+  </label>
+  
+  <label>Kategorija
+    <input type="text" id="kategorija" name="kategorija" value="">
+  </label>
+
+  <label>Istraživač
+    <input type="text" id="istrazivac" name="istrazivac" value="">
+  </label>
+
+  <label>Ugroženost
+    <input type="text" id="ugrozenost" name="ugrozenost" value="">
+  </label>
+
+  <div class="grid-x grid-margin-x">
+    <div class="large-6 cell">
+      <a href="/vrsta/index" class="alert button expanded">Odustani</a>
+    </div>
+    <div class="large-6 cell">
+      <input type="submit" class="button expanded" value="Dodaj vrstu"></input>
+    </div>
+  </div>
+</form>
+<?php echo $poruka; ?>

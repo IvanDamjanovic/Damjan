@@ -1,9 +1,9 @@
-<a class="success button expanded" href="#">Dodaj novu vrstu</a>
+<a class="success button expanded" href="vrsta/novi">Dodaj novu vrstu</a>
 
 <table>
     <thead>
         <tr>
-            <th>Znanstveni naziv</th>
+            <th>Naziv</th>
             <th>Kategorija</th>
             <th>Istraživač</th>
             <th>Ugroženost</th>
@@ -13,7 +13,7 @@
     <tbody>
         <?php 
         foreach($podaci as $red){
-            include 'tablicaStavka.phtml';
+            include 'red.phtml';
         }
         ?>
     </tbody>

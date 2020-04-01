@@ -1,0 +1,38 @@
+<form class="log-in-form" method="POST"
+action="/vrsta/promjeni">
+ <label>Ime
+    <input type="text" id="ime" name="ime" value="<?php 
+    echo $vrsta->ime;
+    ?>">
+  </label>
+  
+  <label>Kategorija
+    <input type="text" id="kategorija" name="kategorija" value="<?php 
+    echo $vrsta->kategorija;
+    ?>">
+  </label>
+
+  <label>Istraživač
+    <input type="text" id="istrazivac" name="istrazivac" value="<?php 
+    echo $vrsta->istrazivac;
+    ?>">
+  </label>
+
+  <label>Ugroženost
+    <input type="text" id="ugrozenost" name="ugrozenost" value="<?php 
+    echo $vrsta->ugrozenost;
+    ?>">
+  </label>
+
+  <div class="grid-x grid-margin-x">
+    <div class="large-6 cell">
+      <a href="/vrsta/index" class="alert button expanded">Odustani</a>
+    </div>
+    <div class="large-6 cell">
+      <input type="submit" class="button expanded" value="Promjeni vrstu"></input>
+    </div>
+  </div>
+  <input type="hidden" name="sifra" 
+  value="<?php echo $vrsta->sifra ?>">
+</form>
+<?php echo $poruka; ?>
