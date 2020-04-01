@@ -1,20 +1,45 @@
-<a class="success button expanded" href="vrsta/novi">Dodaj novu vrstu</a>
+<div class="grid-x grid-margin-x">
+    <div class="large-8 cell">
+        <form action="/vrsta/trazi" method="get">
+            <input type="text" name="uvjet" 
+            id="uvjet"
+            placeholder="Unesi dio imena"
+            value="<?php echo $uvjet ?>">
+            <input type="hidden" name="stranica" value="1">
+        </form>
+    </div>
+    <div class="large-4 cell">
+        <a class="success button expanded" 
+            href="/vrsta/novi"
+            style="border: 0px;">
+            Dodaj novu vrstu</a>
+    </div>
+</div>
 
-<table>
-    <thead>
-        <tr>
-            <th>Naziv</th>
-            <th>Kategorija</th>
-            <th>Istraživač</th>
-            <th>Ugroženost</th>
-            <th>Akcija</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php 
+
+<div class="grid-x grid-margin-x">
+    <?php 
         foreach($podaci as $red){
-            include 'red.phtml';
+            include 'stavka.phtml';
         }
         ?>
-    </tbody>
-</table>
+</div>
+<nav>
+    <ul class="pagination text-center">
+        <li class="pagination-previous">
+            <a href="trazi?uvjet=<?php echo $uvjet ?>&stranica=<?php echo $stranica-1 ?>">
+            Prethodni</a>
+        </li>
+
+        <li class="current">
+            <span class="show-for-sr" >
+            Nalazite se na stranici</span> <?php 
+            echo $stranica . ' / ' . $ukupnoStranica;
+            ?>
+        </li>
+
+        <li class="pagination-next">
+            <a href="trazi?uvjet=<?php echo $uvjet ?>&stranica=<?php echo $stranica+1 ?>" >Sljedeći</a>
+        </li>
+    </ul>
+</nav>

@@ -2,15 +2,50 @@
 
 class VrstaController extends AutorizacijaController
 {
+
     private $viewDir = 'privatno' . 
     DIRECTORY_SEPARATOR . 'vrsta' .
     DIRECTORY_SEPARATOR;
 
+    public function trazivrsta(){
+        header('Content-Type: application/json');
+        echo json_encode(Vrsta::traziVrste());
+    }
+
+
+    /*public function trazi()
+    {
+        
+        if(!isset($_GET['stranica']) || $_GET['stranica']=='0'){
+            $stranica=1;
+        }else{
+            $stranica=$_GET['stranica'];
+        }
+
+        $podaci = Vrsta::trazi($_GET['uvjet'],
+        $stranica);
+
+        if(count($podaci)===0){
+            $stranica--;
+            $podaci = Vrsta::trazi($_GET['uvjet'],
+            $stranica);
+        }
+
+        $this->view->render($this->viewDir . 'index',[
+            'podaci'=>$podaci,
+            'stranica' => $stranica,
+            'uvjet' => $_GET['uvjet'],
+            'ukupnoStranica' => Vrsta::ukupnoStranica($_GET['uvjet'])
+           ]);
+    }*/
+
     public function index()
     {
         $this->view->render($this->viewDir . 'index',[
-         'podaci'=>Vrsta::readAll()
-     ]);
+            'podaci'=>Vrsta::readAll()
+           ]);
+        
+     
     }
 
     public function novi()
@@ -19,6 +54,7 @@ class VrstaController extends AutorizacijaController
             ['poruka'=>'Popunite sve tražene podatke']
         );
     }
+
 
     public function dodajnovi()
     {
@@ -35,6 +71,7 @@ class VrstaController extends AutorizacijaController
         }
         
     }
+
 
     public function promjena()
     {
@@ -57,4 +94,5 @@ class VrstaController extends AutorizacijaController
         Vrsta::update();
         header('location: /vrsta/index');
     }
+
 }

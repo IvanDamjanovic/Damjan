@@ -7,13 +7,15 @@ action="/vrsta/promjeni">
   </label>
   
   <label>Kategorija
-    <input type="text" id="kategorija" name="kategorija" value="<?php 
+    <input type="text" id="kategorija" name="kategorija" 
+    value="<?php 
     echo $vrsta->kategorija;
     ?>">
   </label>
 
   <label>Istraživač
-    <input type="text" id="istrazivac" name="istrazivac" value="<?php 
+    <input type="text" id="istrazivac" name="istrazivac" ,
+    value="<?php 
     echo $vrsta->istrazivac;
     ?>">
   </label>
@@ -24,15 +26,19 @@ action="/vrsta/promjeni">
     ?>">
   </label>
 
+
+
   <div class="grid-x grid-margin-x">
     <div class="large-6 cell">
-      <a href="/vrsta/index" class="alert button expanded">Odustani</a>
+      <a href="/vrsta/index" 
+      class="alert button expanded">Odustani</a>
     </div>
     <div class="large-6 cell">
-      <input type="submit" class="button expanded" value="Promjeni vrstu"></input>
+      <input type="submit" class="button expanded" 
+      value="Promjeni vrstu"></input>
     </div>
   </div>
   <input type="hidden" name="sifra" 
-  value="<?php echo $vrsta->sifra ?>">
+  value="<?php echo $polaznik->sifra ?>">
 </form>
 <?php echo $poruka; ?>

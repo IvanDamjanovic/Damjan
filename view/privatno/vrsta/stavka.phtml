@@ -1,0 +1,25 @@
+<div class="large-4 cell" style="text-align: center;">
+    <div class="callout">
+        <h1><?php echo $red->ime ?>
+        <br /> <?php echo $red->kategorija ?></h1>
+        <?php echo $red->istrazivac ?><br />
+        <?php echo $red->ugrozenost ?>
+        <br />
+        <hr />
+        <a href="/vrsta/promjena?sifra=<?php echo $red->sifra ?>">
+        <i title="Promjeni" class="fas fa-edit fa-2x"></i></a> 
+        
+        <?php if($red->ukupno==0): ?>
+        <a onclick="return confirm('Sigurno obrisati 
+        <?php echo $red->ime ?> '); " 
+        href="/vrsta/obrisi?sifra=<?php echo $red->sifra ?>">
+        <i title="Obriši" class="fas fa-trash fa-2x" style="color: red;"></i></a>
+        <?php else:?>
+
+        <i title="Ne može se obrisati jer je vrsta član jedne ili više projekata" class="fas fa-trash fa-2x" style="color: gray;"></i>
+
+        <?php endif;?>
+
+
+    </div>
+</div>
