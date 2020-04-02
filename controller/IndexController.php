@@ -86,6 +86,12 @@ class IndexController extends Controller
 
 
     }
+
+    public function registracija()
+    {
+        $this->view->render('registracija');
+    }
+
     public function onama()
     {
         $this->view->render('onama');
@@ -106,5 +112,27 @@ class IndexController extends Controller
     {
      echo password_hash('e',PASSWORD_BCRYPT);
       // echo md5('mojaMala'); NE KORISTITI
-    } 
+    }
+
+    public function registrirajnovi()
+    {
+        //prvo dođu sve silne kontrole
+        Istrazivac::registrirajnovi();
+        $this->view->render('registracijagotova');
+    }
+
+    public function zavrsiregistraciju()
+    {
+        Istrazivac::zavrsiregistraciju($_GET['id']);
+        $this->view->render('prijava');
+    }
+
+    public function email()
+    {
+        $headers = "From: Ivan Damjanović <ivan.damjanovic8@gmail.com>\r\n";
+$headers .= "Reply-To: Ivan Damjanović <ivan.damjanovic8@gmail.com>\r\n";
+        $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+        mail('ivan.damjanovic8@gmail.com','Test','Test poruka <a href="http://redbook.hr/">Red Book</a>', $headers);
+        echo 'GOTOV';
+    }
 }

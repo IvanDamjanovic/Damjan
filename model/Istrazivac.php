@@ -64,4 +64,11 @@ class Istrazivac
         prezime=:prezime,uloga=:uloga where sifra=:sifra');
         $izraz->execute($_POST);
     }
+
+    public static function zavrsiregistraciju($id){
+        $veza = DB::getInstanca();
+        $izraz=$veza->prepare('update istrazivac 
+        set uloga=istrazivac where sessionid=:sessionid');
+        $izraz->execute(['sessionid'=>$id]);
+    }
 }
