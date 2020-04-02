@@ -45,8 +45,8 @@ create table vrsta(
     sifra               int not null primary key auto_increment,
     ime                 varchar(50),
     kategorija          varchar(50),
-    istrazivac          int,
-    ugrozenost          int
+    istrazivac          int not null,
+    ugrozenost          int not null
 );
 
 create table istrazivanje(

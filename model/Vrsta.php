@@ -97,14 +97,15 @@ class Vrsta
 
         $zadnjaSifra = $veza->lastInsertId();
 
+        
         $izraz=$veza->prepare('insert into vrsta 
         (ime,kategorija) values 
         (:ime,:kategorija)');
         $izraz->execute([
-            'ime' => $zadnjaSifra,
+            'ime' => $_POST['ime'],
             'kategorija' => $_POST['kategorija']
         ]); 
-    
+        
         
         $veza->commit();
     }
