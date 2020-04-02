@@ -6,7 +6,7 @@ class Istrazivac
     {
         $veza = DB::getInstanca();
         $izraz = $veza->prepare('select sifra,
-        ime, prezime, uloga, email from istrazivac');
+        ime, prezime, uloga, email from istrazivac where sifra>=1');
         $izraz->execute();
         return $izraz->fetchAll();
     }
@@ -41,6 +41,30 @@ class Istrazivac
             'uloga' => $_POST['uloga'],
         ]);
                 */
+    }
+
+    public static function registrirajnovi()
+    {
+        $veza = DB::getInstanca();
+        $izraz=$veza->prepare('insert into istrazivac 
+        (email,lozinka,ime,prezime,uloga,sessionid) values 
+        (:email,:lozinka,:ime,:prezime,:uloga,:sessionid)');
+        unset($_POST['lozinkaponovo']);
+
+        $_POST['lozinka'] = 
+             password_hash($_POST['lozinka'],PASSWORD_BCRYPT);
+        $_POST['sessionid'] = session_id();
+        $_POST['uloga'] = 'istrazivac';
+        //print_r($_POST);
+
+        $izraz->execute($_POST);
+        $headers = "From: RedBook <ivan.damjanovic8@gmail.com>\r\n";
+        $headers .= "Reply-To: RedBook <ivan.damjanovic8@gmail.com>\r\n";
+                $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+                mail($_POST['email'],'Završi registraciju na RedBook',
+                '<a href="' . App::config('url') . 
+                'index/zavrsiregistraciju?id=' . $_POST['sessionid'] . '">Završi</a>', $headers);
+         
     }
 
     public static function delete()
