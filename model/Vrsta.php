@@ -18,22 +18,22 @@ class Vrsta
         return $izraz->fetchAll();
     }*/
 
-    /*public static function ukupnoStranica($uvjet)
+    public static function ukupnoStranica($uvjet)
     {
         $uvjet='%'.$uvjet.'%';
         $veza = DB::getInstanca();
         $izraz = $veza->prepare('
         
-        select count(a.sifra) from polaznik a 
-        inner join osoba b  on a.osoba=b.sifra
-        where concat(b.ime, \' \', b.prezime, 
-        \' \',ifnull(b.oib,\'\')) like :uvjet 
+        select count(a.sifra) from vrsta a 
+        inner join ime b  on a.ime=b.sifra
+        where concat(b.ime, \' \', b.kategorija, 
+        \' \',ifnull(b.ugrozenost,\'\')) like :uvjet 
         ');
         $izraz->bindParam('uvjet',$uvjet);
         $izraz->execute();
         $ukupnoRezultata=$izraz->fetchColumn();
         return ceil($ukupnoRezultata / App::config('rezultataPoStranici'));
-    }*/
+    }
 
     /*public static function trazi($uvjet,$stranica)
     {
@@ -165,7 +165,7 @@ class Vrsta
             'sifra' => $sifraime
         ]); 
 
-    
+        /*
         $izraz=$veza->prepare('update vrsta 
         set ime=:ime
         where sifra=:sifra');
@@ -173,7 +173,7 @@ class Vrsta
             'sifra' => $_POST['sifra'],
             'ime' => $_POST['ime']
         ]); 
-    
+        */
         
         $veza->commit();
     }

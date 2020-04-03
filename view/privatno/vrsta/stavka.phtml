@@ -6,10 +6,10 @@
         <?php echo $red->ugrozenost ?>
         <br />
         <hr />
-        <a href="/vrsta/promjena?sifra=<?php echo $red->sifra ?>">
+        <a href="/polaznik/promjena?sifra=<?php echo $red->sifra ?>">
         <i title="Promjeni" class="fas fa-edit fa-2x"></i></a> 
         
-        <?php if($red->ukupno==''): ?>
+        <?php if($red->ukupno==0): ?>
         <a onclick="return confirm('Sigurno obrisati 
         <?php echo $red->ime ?> '); " 
         href="/vrsta/obrisi?sifra=<?php echo $red->sifra ?>">

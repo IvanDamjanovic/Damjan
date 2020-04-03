@@ -58,14 +58,12 @@ class VrstaController extends AutorizacijaController
 
     public function dodajnovi()
     {
-        //prvo dođu sve silne kontrole
         Vrsta::create();
         $this->index();
     }
 
     public function obrisi()
     {
-        //prvo dođu silne kontrole
         if(Vrsta::delete()){
             header('location: /vrsta/index');
         }
@@ -90,7 +88,6 @@ class VrstaController extends AutorizacijaController
 
     public function promjeni()
     {
-        // I OVDJE DOĐU SILNE KONTROLE
         Vrsta::update();
         header('location: /vrsta/index');
     }

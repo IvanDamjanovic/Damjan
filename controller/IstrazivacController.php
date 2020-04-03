@@ -30,7 +30,6 @@ class IstrazivacController extends AdminController
 
     public function obrisi()
     {
-        //prvo dođu silne kontrole
         if(Istrazivac::delete()){
             header('location: /istrazivac/index');
         }
