@@ -1,5 +1,5 @@
 <?php
-/*
+
 return [
     'nazivAPP' => 'RedBook',
     'url' => 'http://redbook.hr/',
@@ -10,8 +10,8 @@ return [
         'korisnik' => 'edunova',
         'lozinka' => 'edunova'
     ]
-*/
 
+/*
 return [
     'nazivAPP' => 'RedBook',
     'url' => 'http://polaznik37.edunova.hr/',
@@ -22,5 +22,5 @@ return [
         'korisnik' => 'eskulap_edunova',
         'lozinka' => 'edunova'
     ]
-
+*/
 ];
