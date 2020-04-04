@@ -19,7 +19,7 @@ return [
     'db' =>[
         'server' => 'localhost',
         'baza' => 'redbook',
-        'korisnik' => 'eskulap_edunova',
+        'korisnik' => 'edunova',
         'lozinka' => 'edunova'
 
 
