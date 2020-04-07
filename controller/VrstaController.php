@@ -12,6 +12,12 @@ class VrstaController extends AutorizacijaController
         echo json_encode(Vrsta::traziVrste());
     }
 
+    public function trazi()
+    {
+        $this->view->render($this->viewDir . 'index',[
+            'podaci'=>Vrsta::trazi($_GET['uvjet'])
+           ]);
+    }
 
     /*public function trazi()
     {

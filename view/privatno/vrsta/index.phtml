@@ -4,7 +4,7 @@
             <input type="text" name="uvjet" 
             id="uvjet"
             placeholder="Unesi dio imena"
-            value="<?php echo $uvjet ?>">
+            value="<?php echo isset($_GET['uvjet']) ? $_GET['uvjet'] : '' ?>">
             <input type="hidden" name="stranica" value="1">
         </form>
     </div>
@@ -24,6 +24,7 @@
         }
         ?>
 </div>
+
 <nav>
     <ul class="pagination text-center">
         <li class="pagination-previous">

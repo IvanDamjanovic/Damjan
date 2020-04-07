@@ -35,7 +35,7 @@ class Vrsta
         return ceil($ukupnoRezultata / App::config('rezultataPoStranici'));
     }
 
-    /*public static function trazi($uvjet,$stranica)
+    public static function trazi($uvjet,$stranica)
     {
         $rps = App::config('rezultataPoStranici');
 
@@ -45,23 +45,14 @@ class Vrsta
         $uvjet='%'.$uvjet.'%';
         $veza = DB::getInstanca();
         $izraz = $veza->prepare('
-        
-        select a.sifra, a.brojugovora, b.ime, 
-        b.prezime, b.oib, b.email, count(c.grupa) as ukupno
-        from polaznik a inner join osoba b  on a.osoba=b.sifra
-        left join clan c on a.sifra=c.polaznik
-        where concat(b.ime, \' \', b.prezime, 
-        \' \',ifnull(b.oib,\'\')) like :uvjet 
-        group by a.sifra, a.brojugovora, b.ime, 
-        b.prezime, b.oib, b.email limit :od,6
-        
+        select * from vrsta
         ');
         $izraz->bindParam('uvjet',$uvjet);
         $izraz->bindValue('od',$od, PDO::PARAM_INT);
         $izraz->execute();
 
         return $izraz->fetchAll();
-    }*/
+    }
 
     public static function readAll()
     {
