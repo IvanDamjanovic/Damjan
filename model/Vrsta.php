@@ -3,20 +3,20 @@
 class Vrsta
 {
 
-    /*public static function traziVrste()
+    public static function traziVrste()
     {
         $veza = DB::getInstanca();
         $izraz = $veza->prepare('
             select a.sifra, b.ime,b.email,
-            b.oib from polaznik a inner join osoba b
-            on a.osoba=b.sifra
-            where concat(b.ime,\' \',b.prezime) like :uvjet
-            order by b.prezime, b.ime
+            b.oib from vrsta a inner join ime b
+            on a.ime=b.sifra
+            where concat(b.ime,\' \',) like :uvjet
+            order by b.ime
         ');
 
         $izraz->execute(['uvjet'=>'%' . $_GET['uvjet'] . '%']);
         return $izraz->fetchAll();
-    }*/
+    }
 
     public static function ukupnoStranica($uvjet)
     {
@@ -25,7 +25,7 @@ class Vrsta
         $izraz = $veza->prepare('
         
         select count(a.sifra) from vrsta a 
-        inner join ime b  on a.ime=b.sifra
+        inner join ime b on a.ime=b.sifra
         where concat(b.ime, \' \', b.kategorija, 
         \' \',ifnull(b.ugrozenost,\'\')) like :uvjet 
         ');
@@ -165,7 +165,7 @@ class Vrsta
             'sifra' => $sifraime
         ]); 
 
-        /*
+        
         $izraz=$veza->prepare('update vrsta 
         set ime=:ime
         where sifra=:sifra');
@@ -173,7 +173,7 @@ class Vrsta
             'sifra' => $_POST['sifra'],
             'ime' => $_POST['ime']
         ]); 
-        */
+        
         
         $veza->commit();
     }

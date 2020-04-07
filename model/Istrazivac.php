@@ -58,8 +58,8 @@ class Istrazivac
         //print_r($_POST);
 
         $izraz->execute($_POST);
-        $headers = "From: RedBook <ivan.damjanovic8@gmail.com>\r\n";
-        $headers .= "Reply-To: RedBook <ivan.damjanovic8@gmail.com>\r\n";
+        $headers = "From: RedBook <polaznik37.edunova.hr>\r\n";
+        $headers .= "Reply-To: RedBook <polaznik37.edunova.hr>\r\n";
                 $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
                 mail($_POST['email'],'Završi registraciju na RedBook',
                 '<a href="' . App::config('url') . 

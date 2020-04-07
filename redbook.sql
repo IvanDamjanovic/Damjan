@@ -1,4 +1,3 @@
-drop database if exists redbook;
 create database redbook default character set utf8;
 # ovu sljedeću liniju copy/paste u command prompt
 # PRIPAZITI SAMO NA PUTANJU DATOTEKE

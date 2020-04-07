@@ -129,10 +129,10 @@ class IndexController extends Controller
 
     public function email()
     {
-        $headers = "From: Ivan Damjanović <ivan.damjanovic8@gmail.com>\r\n";
-$headers .= "Reply-To: Ivan Damjanović <ivan.damjanovic8@gmail.com>\r\n";
+        $headers = "From: Ivan Damjanović <polaznik37.edunova.hr>\r\n";
+$headers .= "Reply-To: Ivan Damjanović <polaznik37.edunova.hr>\r\n";
         $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
-        mail('ivan.damjanovic8@gmail.com','Test','Test poruka <a href="http://redbook.hr/">Red Book</a>', $headers);
+        mail('ivan.damjanovic8@gmail.com','Test','Test poruka <a href="http://polaznik37.edunova.hr/">Red Book</a>', $headers);
         echo 'GOTOV';
     }
 }

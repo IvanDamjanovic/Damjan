@@ -18,7 +18,7 @@ return [
     'dev' => true,
     'db' =>[
         'server' => 'localhost',
-        'baza' => 'eskulap_redbook.sql',
+        'baza' => 'eskulap_redbook',
         'korisnik' => 'eskulap_edunova',
         'lozinka' => 'edunova'
     ]
