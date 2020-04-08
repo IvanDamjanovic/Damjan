@@ -133,17 +133,8 @@ class Vrsta
 
     public static function update(){
         $veza = DB::getInstanca();
-        $veza->beginTransaction();
-
-        $izraz=$veza->prepare('select ime
-            from vrsta  
-            where sifra=:sifra');
-            $izraz->execute([
-                'sifra' => $_POST['sifra']
-            ]);
-
-            $sifraime = $izraz->fetchColumn();
-
+        
+        
         $izraz=$veza->prepare('update vrsta 
         set ime=:ime, kategorija=:kategorija,
         istrazivac=:istrazivac,ugrozenost=:ugrozenost
@@ -153,19 +144,7 @@ class Vrsta
             'kategorija' => $_POST['kategorija'],
             'istrazivac' => $_POST['istrazivac'],
             'ugrozenost' => $_POST['ugrozenost'],
-            'sifra' => $sifraime
+            'sifra' => $_POST['sifra']
         ]); 
-
-        
-        $izraz=$veza->prepare('update vrsta 
-        set ime=:ime
-        where sifra=:sifra');
-        $izraz->execute([
-            'sifra' => $_POST['sifra'],
-            'ime' => $_POST['ime']
-        ]); 
-        
-        
-        $veza->commit();
     }
 }
