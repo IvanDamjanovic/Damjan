@@ -14,19 +14,35 @@ action="/vrsta/promjeni">
     ?>">
   </label>
 
-  <label>Istraživač
-    <input type="text" id="istrazivac" name="istrazivac" ,
-    value="<?php 
-    echo $vrsta->istrazivac;
-    ?>">
-  </label>
+  <label for="istrazivac">Istraživač</label>
+      <select name="istrazivac" id="istrazivac">
+          <option value="0">Odaberite istrazivača</option>
+          <?php foreach($istrazivaci as $istrazivac): ?>
+              <option <?php 
+                   if($istrazivac->sifra==$projekt->istrazivac){
+                       echo 'selected="selected"';
+                  }
+                  
+                   ?> value="<?php echo $istrazivac->sifra ?>">
+                  <?php echo $istrazivac->ime . ' ' . $istrazivac->prezime ?>
+              </option>
+          <?php endforeach;?>
+      </select>
 
-  <label>Ugroženost
-    <input type="text" id="ugrozenost" name="ugrozenost" 
-    value="<?php 
-    echo $vrsta->ugrozenost;
-    ?>">
-  </label>
+  <label for="ugrozenost">Ugroženost</label>
+      <select name="ugrozenost" id="ugrozenost">
+          <option value="0">Odaberite ugroženost</option>
+          <?php foreach($ugrozenost as $ugrozenost): ?>
+              <option <?php 
+                   if($ugrozenost->sifra==$projekt->ugrozenost){
+                       echo 'selected="selected"';
+                  }
+                  
+                   ?> value="<?php echo $ugrozenost->sifra ?>">
+                  <?php echo $ugrozenost->naziv ?>
+              </option>
+          <?php endforeach;?>
+      </select>
 
 
 
