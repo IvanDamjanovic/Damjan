@@ -1,0 +1,71 @@
+
+<div class="grid-x grid-margin-x">
+    <div class="large-6 cell">
+
+
+        <form method="POST"
+        action="/projekt/promjeni">
+
+        <label>Naziv
+            <input type="text" id="naziv" name="naziv" value="<?php 
+            echo $projekt->naziv;
+            ?>">
+        </label>
+
+            <label for="istrazivac">Odabrani istraživač</label>
+            <select name="istrazivac" id="istrazivac">
+                <option value="0">Odaberite istraživača</option>
+                <?php foreach($istrazivaci as $istrazivac): ?>
+                    <option <?php 
+                        if($istrazivac->sifra==$projekt->istrazivac){
+                            echo 'selected="selected"';
+                        }
+                        
+                        ?> value="<?php echo $istrazivac->sifra ?>">
+                        <?php echo $istrazivac->ime . ' ' . $istrazivac->prezime ?>
+                    </option>
+                <?php endforeach;?>
+            </select>
+
+            <label for="brojvrsta">Broj vrsta</label>
+            <input type="number" name="brojvrsta" id="brojvrsta" value="<?php echo $projekt->brojvrsta ?>" />
+
+
+            <input type="hidden" name="sifra" value="<?php echo $projekt->sifra ?>"/>
+
+            <div class="grid-x grid-margin-x">
+                <div class="large-6 cell">
+                    <a href="/projekt/index" class="alert button expanded">Odustani</a>
+                </div>
+                <div class="large-6 cell">
+                    <input type="submit" class="button expanded" value="Promjeni projekt"></input>
+                </div>
+            </div>
+
+        </form>
+    </div>
+    <div class="large-6 cell">
+    <label for="uvjet">Traži vrstu</label>
+    <input type="text" id="uvjet" />
+    <div style="width: 100%; overflow: auto; max-height: 380px;">
+        <table>
+            <thead>
+                <tr>
+                    <th>Vrsta</th>
+                    <th>Kategorija</th>
+                    <th>Akcija</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach($projekt->vrste as $vrsta):?>  
+                    <tr>
+                        <td><?php echo $vrsta->ime ?></td>
+                        <td><?php echo $vrsta->kategorija ?></td>
+                        <td>NNN</td>
+                    </tr>
+                <?php endforeach;?>
+            </tbody>
+        </table>
+        </div>
+    </div>
+</div>
