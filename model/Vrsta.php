@@ -23,11 +23,9 @@ class Vrsta
         $uvjet='%'.$uvjet.'%';
         $veza = DB::getInstanca();
         $izraz = $veza->prepare('
-        
-        select count(a.sifra) from vrsta a 
-        inner join ime b on a.ime=b.sifra
-        where concat(b.ime, \' \', b.kategorija, 
-        \' \',ifnull(b.ugrozenost,\'\')) like :uvjet 
+
+        select * from vrsta 
+
         ');
         $izraz->bindParam('uvjet',$uvjet);
         $izraz->execute();
@@ -44,8 +42,11 @@ class Vrsta
 
         $uvjet='%'.$uvjet.'%';
         $veza = DB::getInstanca();
+        //odrediti broj prikaza na jednoj stranici
         $izraz = $veza->prepare('
-        select * from vrsta
+        
+        select * from vrsta 
+
         ');
         $izraz->bindParam('uvjet',$uvjet);
         $izraz->bindValue('od',$od, PDO::PARAM_INT);
@@ -57,7 +58,17 @@ class Vrsta
     public static function readAll()
     {
         $veza = DB::getInstanca();
-        $izraz = $veza->prepare('select * from vrsta');
+        $izraz = $veza->prepare('
+
+        select a.sifra, a.ime, b.ime, 
+        b.kategorija, b.istrazivac, b.ugrozenost, 
+        count(c.projekt) as ukupno
+        from vrsta a left join vrsta b  on a.vrsta=b.sifra
+        left join vrsta c on a.sifra=c.vrsta
+        group by a.sifra, a.ime, b.ime, 
+        b.kategorija, b.istrazivac, b.ugrozenost
+
+        ');
         $izraz->execute();
         return $izraz->fetchAll();
     }
@@ -65,8 +76,12 @@ class Vrsta
     public static function read($sifra)
     {
         $veza = DB::getInstanca();
-        $izraz = $veza->prepare('select * from vrsta
-        where sifra=:sifra');
+        $izraz = $veza->prepare('
+        select a.sifra, a.ime, b.ime, 
+        b.kategorija, b.istrazivac, b.ugrozenost
+        from vrsta a left join vrsta b  on a.vrsta=b.sifra
+        where a.sifra=:sifra
+        ');
         $izraz->execute(['sifra'=>$sifra]);
         return $izraz->fetch();
     }

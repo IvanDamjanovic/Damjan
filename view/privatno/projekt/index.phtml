@@ -5,7 +5,7 @@
                 <option value="0">Odaberite istraživača</option>
                 <?php foreach($istrazivaci as $istrazivac): ?>
                     <option value="<?php echo $istrazivac->sifra ?>">
-                        <?php echo $istrazivac->naziv ?>
+                        <?php echo $istrazivac->ime . ' ' . $istrazivac->prezime ?>
                     </option>
                 <?php endforeach;?>
             </select>

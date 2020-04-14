@@ -13,7 +13,7 @@ class ProjektController extends AutorizacijaController
          'podaci'=>Projekt::readAll(),
          'istrazivac' => Istrazivac::readAll(),
          'javascript'=>'<script src="' . APP::config('url') . 
-         'public/js/grupa/index.js"></script>'
+         'public/js/projekt/index.js"></script>'
      ]);
      
 
@@ -25,20 +25,26 @@ class ProjektController extends AutorizacijaController
         $_POST['istrazivac']=='0'){
             $this->view->render($this->viewDir . 'index',[
                 'podaci'=>Projekt::readAll(),
-                'istrazivac' => Istrazivac::readAll(),
+                'istrazivaci' => Istrazivac::readAll(),
                 'alertPoruka'=>'Morate odabrati istraživača'
             ]);
             return;
         }
+        
+        $this->view->render($this->viewDir . 'detalji',[
+            'sifra'=>Projekt::create($_POST['istrazivac'])
+        ]);
 
+        /*
         $sifraNovogProjekta=Projekt::create($_POST['istrazivac']);
         $projekt = Projekt::read($sifraNovogProjekta);
         $this->detalji($projekt);
-
-        //$this->detalji(Grupa::read(Grupa::create($_POST['smjer'])));
+        */
+        //$this->detalji(Projekt::read(Projekt::create($_POST['istrazivac'])));
        
     }
 
+    /*
     public function promjena()
     {
         $projekt = Projekt::read($_GET['sifra']);
@@ -69,7 +75,7 @@ class ProjektController extends AutorizacijaController
 
     private function detalji($projekt)
     {
-        $projekt->vrste=Projekt::ucitajprojektrste($projekt->sifra);
+        $projekt->vrste=Projekt::ucitajprojekt($projekt->sifra);
         $this->view->render($this->viewDir . 'detalji',[
             'projekt'=>$projekt,
             'istrazivaci' => Istrazivac::readAll(),
@@ -83,5 +89,6 @@ class ProjektController extends AutorizacijaController
     public function vrste(){
         echo 'hello s servera s ' . $_GET['sifra'];
     }
+    */
    
 }

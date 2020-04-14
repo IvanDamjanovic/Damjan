@@ -7,16 +7,13 @@ class Projekt
         $veza = DB::getInstanca();
         $izraz = $veza->prepare('
         
-            select a.sifra, a.naziv, a.brojpolaznika, b.naziv as smjer, 
-            concat(d.ime, \' \', d.prezime) as predavac,
-            a.datumpocetka, count(e.polaznik) as ukupnopolaznika
-            from grupa a inner join smjer b on a.smjer=b.sifra
-            left join predavac c on a.predavac=c.sifra
-            left join osoba d on c.osoba=d.sifra
-            left join clan e on a.sifra=e.grupa
-            group by a.sifra, a.naziv, b.naziv , 
-            concat(d.ime, \' \', d.prezime),
-            a.datumpocetka
+            select a.sifra, a.naziv, a.brojvrsta, b.naziv as istrazivac, 
+            concat(d.ime, \' \', d.prezime) as istrazivac,
+            a.datumpocetka, count(e.vrsta) as ukupnovrsta
+            from projekt a inner join istrazivac b on a.istrazivac=b.sifra
+            left join istrazivac c on a.istrazivac=c.sifra
+            left join vrsta d on c.vrsta=d.sifra, 
+            concat(d.ime, \' \', d.prezime)
         
         ');
         $izraz->execute();
@@ -36,8 +33,8 @@ class Projekt
         $izraz->execute(['sifra'=>$sifra]);
         return $izraz->fetch();
     }
-
-    public static function ucitajVrste($sifraGrupe)
+    /*
+    public static function ucitajVrste($sifraVrste)
     {
         $veza = DB::getInstanca();
         $izraz = $veza->prepare('
@@ -50,10 +47,10 @@ class Projekt
         where a.grupa=:sifra
 
         ');
-        $izraz->execute(['sifra'=>$sifraGrupe]);
+        $izraz->execute(['sifra'=>$sifraVrste]);
         return $izraz->fetchAll();
     }
-
+    */
     public static function create($istrazivac)
     {
         $veza = DB::getInstanca();

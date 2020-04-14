@@ -7,17 +7,16 @@
     <div class="top-bar-left">
         <ul class="dropdown menu" data-dropdown-menu>
             <li class="menu-text show-for-large">
-            <?php echo APP::config('nazivAPP'); ?>
+                <?php echo APP::config('nazivAPP'); ?>
             </li>
             <li><a href="/">Početna</a></li>
             <?php if(isset($_SESSION['istrazivac'])):?>
-                <li><a href="/nadzornaploca/index">Nadzorna ploča</a></li>
-                <li>
-                    <a href="#">Projekti</a>
-                    <ul class="vertical menu">
-                        <li><a href="projekt/index">Projekt</a></li>
-                    </ul>
-                </li>
+            <li><a href="/nadzornaploca/index">Nadzorna ploča</a></li>
+                
+            <li>
+            <a href="projekt/index">Projekti</a> 
+            </li>
+                
                 <li>
                     <a href="/vrsta/index">Vrste</a>
                 </li>
@@ -55,4 +54,5 @@
         </ul>
     </div>
 </div>
+
 <!-- Kraj izbornik -->

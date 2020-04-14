@@ -6,7 +6,7 @@ class VrstaController extends AutorizacijaController
     private $viewDir = 'privatno' . 
     DIRECTORY_SEPARATOR . 'vrsta' .
     DIRECTORY_SEPARATOR;
-
+    /*
     public function trazivrsta(){
         header('Content-Type: application/json');
         echo json_encode(Vrsta::traziVrste());
@@ -18,8 +18,8 @@ class VrstaController extends AutorizacijaController
             'podaci'=>Vrsta::trazi($_GET['uvjet'])
            ]);
     }
-
-    /*public function trazi()
+    */
+    public function trazi()
     {
         
         if(!isset($_GET['stranica']) || $_GET['stranica']=='0'){
@@ -43,12 +43,15 @@ class VrstaController extends AutorizacijaController
             'uvjet' => $_GET['uvjet'],
             'ukupnoStranica' => Vrsta::ukupnoStranica($_GET['uvjet'])
            ]);
-    }*/
+    }
 
     public function index()
     {
         $this->view->render($this->viewDir . 'index',[
-            'podaci'=>Vrsta::readAll()
+            'podaci'=>Vrsta::trazi('','1'),
+            'stranica' => '1',
+            'uvjet' => '',
+            'ukupnoStranica' => Vrsta::ukupnoStranica('')
            ]);
         
      

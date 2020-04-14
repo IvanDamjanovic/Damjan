@@ -32,14 +32,14 @@ action="/vrsta/promjeni">
   <label for="ugrozenost">Ugroženost</label>
       <select name="ugrozenost" id="ugrozenost">
           <option value="0">Odaberite ugroženost</option>
-          <?php foreach($ugrozenost as $ugrozenost): ?>
+          <?php foreach($ugrozenosti as $ugrozenost): ?>
               <option <?php 
                    if($ugrozenost->sifra==$projekt->ugrozenost){
                        echo 'selected="selected"';
                   }
                   
                    ?> value="<?php echo $ugrozenost->sifra ?>">
-                  <?php echo $ugrozenost->naziv ?>
+                  <?php echo $ugrozenost->šifra ?>
               </option>
           <?php endforeach;?>
       </select>
