@@ -45,11 +45,11 @@ class Vrsta
         //odrediti broj prikaza na jednoj stranici
         $izraz = $veza->prepare('
         
-        select * from vrsta 
+        select * from vrsta
 
         ');
-        $izraz->bindParam('uvjet',$uvjet);
-        $izraz->bindValue('od',$od, PDO::PARAM_INT);
+        //$izraz->bindParam('uvjet',$uvjet);
+        //$izraz->bindValue('od',$od, PDO::PARAM_INT);
         $izraz->execute();
 
         return $izraz->fetchAll();
@@ -148,6 +148,15 @@ class Vrsta
 
     public static function update(){
         $veza = DB::getInstanca();
+        $veza->beginTransaction();
+
+        $izraz=$veza->prepare('select vrsta
+            where sifra=:sifra');
+            $izraz->execute([
+                'sifra' => $_POST['sifra']
+            ]);
+
+            $sifravrsta = $izraz->fetchColumn();
         
         
         $izraz=$veza->prepare('update vrsta 
@@ -161,5 +170,8 @@ class Vrsta
             'ugrozenost' => $_POST['ugrozenost'],
             'sifra' => $_POST['sifra']
         ]); 
+
+        $veza->commit();
+
     }
 }
