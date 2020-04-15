@@ -7,13 +7,8 @@ class Projekt
         $veza = DB::getInstanca();
         $izraz = $veza->prepare('
         
-            select a.sifra, a.naziv, a.brojvrsta, b.naziv as istrazivac, 
-            concat(d.ime, \' \', d.prezime) as istrazivac,
-            count(e.vrsta) as ukupnovrsta
-            from projekt a inner join istrazivac b on a.istrazivac=b.sifra
-            left join istrazivac c on a.istrazivac=c.sifra
-            left join vrsta d on c.vrsta=d.sifra, 
-            concat(d.ime, \' \', d.prezime)
+        select * from projekt
+
         
         ');
         $izraz->execute();
@@ -25,8 +20,7 @@ class Projekt
         $veza = DB::getInstanca();
         $izraz = $veza->prepare('
         
-            select *
-            from projekt 
+            select * from projekt 
             where sifra=:sifra
 
         ');
