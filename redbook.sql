@@ -45,7 +45,7 @@ create table vrsta(
     sifra               int not null primary key auto_increment,
     ime                 varchar(50),
     kategorija          varchar(50),
-    istrazivac          int not null,
+    istrazivac          int,
     ugrozenost          int not null
 );
 
@@ -96,6 +96,9 @@ insert into vrsta (sifra,ime,ugrozenost) values
     (null,'Canis lupus',7),
     (null,'Ursus arctos',7),
     (null,'Glis glis',8);
+
+insert into vrsta (sifra,ime,ugrozenost) values
+(null,'Felis silvestris',8);
 
 update vrsta 
 set kategorija = 'Šišmiš' 

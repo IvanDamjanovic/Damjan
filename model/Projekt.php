@@ -9,7 +9,7 @@ class Projekt
         
             select a.sifra, a.naziv, a.brojvrsta, b.naziv as istrazivac, 
             concat(d.ime, \' \', d.prezime) as istrazivac,
-            a.datumpocetka, count(e.vrsta) as ukupnovrsta
+            count(e.vrsta) as ukupnovrsta
             from projekt a inner join istrazivac b on a.istrazivac=b.sifra
             left join istrazivac c on a.istrazivac=c.sifra
             left join vrsta d on c.vrsta=d.sifra, 
@@ -33,24 +33,19 @@ class Projekt
         $izraz->execute(['sifra'=>$sifra]);
         return $izraz->fetch();
     }
-    /*
+    
     public static function ucitajVrste($sifraVrste)
     {
         $veza = DB::getInstanca();
         $izraz = $veza->prepare('
         
-        select b.sifra,concat(c.ime, \' \', c.prezime) as imeprezime,c.oib
-        from clan a inner join polaznik b
-        on a.polaznik=b.sifra
-        inner join osoba c
-        on b.osoba=c.sifra
-        where a.grupa=:sifra
-
+        select * from vrsta where sifra=:sifra
+        
         ');
         $izraz->execute(['sifra'=>$sifraVrste]);
         return $izraz->fetchAll();
     }
-    */
+    
     public static function create($istrazivac)
     {
         $veza = DB::getInstanca();

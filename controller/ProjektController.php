@@ -11,7 +11,7 @@ class ProjektController extends AutorizacijaController
         
         $this->view->render($this->viewDir . 'index',[
          'podaci'=>Projekt::readAll(),
-         'istrazivac' => Istrazivac::readAll(),
+         'istrazivaci' => Istrazivac::readAll(),
          'javascript'=>'<script src="' . APP::config('url') . 
          'public/js/projekt/index.js"></script>'
      ]);
@@ -44,7 +44,7 @@ class ProjektController extends AutorizacijaController
        
     }
 
-    /*
+    
     public function promjena()
     {
         $projekt = Projekt::read($_GET['sifra']);
@@ -59,7 +59,6 @@ class ProjektController extends AutorizacijaController
 
     public function promjeni()
     {
-        //cijeli niz kontrola
         Projekt::update();
         $this->index();
        //print_r($_POST);
@@ -67,7 +66,6 @@ class ProjektController extends AutorizacijaController
 
     public function obrisi()
     {
-        //cijeli niz kontrola
         if(Projekt::delete()){
             header('location: /projekt/index');
         }
@@ -75,10 +73,11 @@ class ProjektController extends AutorizacijaController
 
     private function detalji($projekt)
     {
-        $projekt->vrste=Projekt::ucitajprojekt($projekt->sifra);
+        $projekt->vrste=Projekt::ucitajVrste($projekt->sifra);
         $this->view->render($this->viewDir . 'detalji',[
             'projekt'=>$projekt,
             'istrazivaci' => Istrazivac::readAll(),
+            'vrste' => Vrsta::readAll(),
             'css' => '<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">',
             'jsLib' => '<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>',
             'javascript'=>'<script src="' . APP::config('url') . 
@@ -89,6 +88,6 @@ class ProjektController extends AutorizacijaController
     public function vrste(){
         echo 'hello s servera s ' . $_GET['sifra'];
     }
-    */
+    
    
 }

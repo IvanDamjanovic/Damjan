@@ -19,7 +19,7 @@ action="/vrsta/promjeni">
           <option value="0">Odaberite istrazivača</option>
           <?php foreach($istrazivaci as $istrazivac): ?>
               <option <?php 
-                   if($istrazivac->sifra==$projekt->istrazivac){
+                   if($istrazivac->sifra==$vrsta->istrazivac){
                        echo 'selected="selected"';
                   }
                   
@@ -34,7 +34,7 @@ action="/vrsta/promjeni">
           <option value="0">Odaberite ugroženost</option>
           <?php foreach($ugrozenosti as $ugrozenost): ?>
               <option <?php 
-                   if($ugrozenost->sifra==$projekt->ugrozenost){
+                   if($ugrozenost->sifra==$vrsta->ugrozenost){
                        echo 'selected="selected"';
                   }
                   
