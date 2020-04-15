@@ -1,22 +1,11 @@
 <tr>
-    <td class="naziv" id="td_<?php echo $red->sifra?>">
-        <span style="font-size: 1.4em;" 
-        id="n_<?php echo $red->sifra?>">
-        <?php echo $red->naziv?></span>
-    </td>
-    <td><?php echo $red->istrazivac?></td>
-    <td><?php echo $red->ukupnovrsta?> / 
-    <?php echo $red->brojvrsta?></td>
+    <td title="naziv">
+    
+    <span style="font-size: 1.4em;"><?php echo $red->naziv?></span></td>
+    <td style="text-align: right;" title="istrazivac"><?php echo $red->istrazivac?></td>
+    <td style="text-align: right;" title="vrsta"><?php echo $red->vrsta?></td>
     <td>
         <a href="/projekt/promjena?sifra=<?php echo $red->sifra?>"><i title="Promjeni" class="fas fa-edit fa-2x"></i></a> 
-        <?php if($red->ukupnovrsta==0): ?>
-
-        <a href="/projekt/obrisi?sifra=<?php echo $red->sifra?>"><i title="Obriši" class="fas fa-trash fa-2x" style="color: red; cursor: pointer;"></i></a>
-
-        <?php else: ?>
-            <i title="Ne može se obrisati jer ima vrste" 
-            class="fas fa-trash fa-2x" 
-            style="color: gray;"></i>
-        <?php endif; ?>
+        <a href="/projekt/obrisi?sifra=<?php echo $red->sifra?>"><i title="Obriši" class="fas fa-trash fa-2x" style="color: red;"></i></a>
     </td>
 </tr>

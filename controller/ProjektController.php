@@ -8,43 +8,34 @@ class ProjektController extends AutorizacijaController
 
     public function index()
     {
-        
         $this->view->render($this->viewDir . 'index',[
-         'podaci'=>Projekt::readAll(),
-         'istrazivaci' => Istrazivac::readAll(),
-         'javascript'=>'<script src="' . APP::config('url') . 
-         'public/js/projekt/index.js"></script>'
+         'podaci'=>Projekt::readAll()
      ]);
-     
-
     }
 
     public function novi()
     {
-        if(!isset($_POST['istrazivac']) || 
-        $_POST['istrazivac']=='0'){
-            $this->view->render($this->viewDir . 'index',[
-                'podaci'=>Projekt::readAll(),
-                'istrazivaci' => Istrazivac::readAll(),
-                'alertPoruka'=>'Morate odabrati istraživača'
-            ]);
-            return;
-        }
-        
-        $this->view->render($this->viewDir . 'detalji',[
-            'sifra'=>Projekt::create($_POST['istrazivac'])
-        ]);
-
-        /*
-        $sifraNovogProjekta=Projekt::create($_POST['istrazivac']);
-        $projekt = Projekt::read($sifraNovogProjekta);
-        $this->detalji($projekt);
-        */
-        //$this->detalji(Projekt::read(Projekt::create($_POST['istrazivac'])));
-       
+        $this->view->render($this->viewDir . 'novi',
+            ['poruka'=>'Popunite sve tražene podatke']
+        );
     }
 
-    
+    public function dodajnovi()
+    {
+        //prvo dođu sve silne kontrole
+        Projekt::create();
+        $this->index();
+    }
+
+    public function obrisi()
+    {
+        //prvo dođu silne kontrole
+        if(Projekt::delete()){
+            header('location: /projekt/index');
+        }
+        
+    }
+
     public function promjena()
     {
         $projekt = Projekt::read($_GET['sifra']);
@@ -52,42 +43,18 @@ class ProjektController extends AutorizacijaController
             $this->index();
             exit;
         }
-        $this->detalji($projekt);
-         
+
+        $this->view->render($this->viewDir . 'promjena',
+            ['projekt'=>$projekt,
+                'poruka'=>'Promjenite željene podatke']
+        );
      
     }
 
     public function promjeni()
     {
+        // I OVDJE DOĐU SILNE KONTROLE
         Projekt::update();
-        $this->index();
-       //print_r($_POST);
+        header('location: /projekt/index');
     }
-
-    public function obrisi()
-    {
-        if(Projekt::delete()){
-            header('location: /projekt/index');
-        }
-    }
-
-    private function detalji($projekt)
-    {
-        $projekt->vrste=Projekt::ucitajVrste($projekt->sifra);
-        $this->view->render($this->viewDir . 'detalji',[
-            'projekt'=>$projekt,
-            'istrazivaci' => Istrazivac::readAll(),
-            'vrste' => Vrsta::readAll(),
-            'css' => '<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">',
-            'jsLib' => '<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>',
-            'javascript'=>'<script src="' . APP::config('url') . 
-                'public/js/grupa/detalji.js"></script>'
-            ]);  
-    }
-
-    public function vrste(){
-        echo 'hello s servera s ' . $_GET['sifra'];
-    }
-    
-   
 }

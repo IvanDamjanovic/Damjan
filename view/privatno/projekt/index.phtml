@@ -1,52 +1,20 @@
-<form action="/projekt/novi" method="POST">
-    <div class="grid-x">
-        <div class="large-3 cell">
-            <select name="istrazivac" id="istrazivac">
-                <option value="0">Odaberite istraživača</option>
-                <?php foreach($istrazivaci as $istrazivac): ?>
-                    <option value="<?php echo $istrazivac->sifra ?>">
-                        <?php echo $istrazivac->ime . ' ' . $istrazivac->prezime ?>
-                    </option>
-                <?php endforeach;?>
-            </select>
-        </div>
-        <div class="large-9 cell" style="padding-left: 5px;">
-            <input type="submit" class="success button expanded"
-            value="Dodaj nove vrste na odabranog istraživača"
-            style="border: 0px;">
-        </div>
-    </div>
-</form>
-
+<a class="success button expanded" href="/projekt/novi">Dodaj novi projekt</a>
 
 <table>
     <thead>
         <tr>
             <th>Naziv</th>
             <th>Istraživač</th>
-            <th>Vrste</th>
+            <th>Vrsta</th>
             <th>Akcija</th>
         </tr>
     </thead>
     <tbody>
-    <?php 
+        <?php 
+        
         foreach($podaci as $red){
             include 'red.phtml';
         }
         ?>
     </tbody>
 </table>
-<?php if(isset($alertPoruka)): ?>
-    <script>
-        	alert("<?php echo $alertPoruka ?>");
-    </script>
-<?php endif;?>
-
-<div class="reveal" id="modalObrisi" data-reveal>
-  <h1 id="pitanje"></h1>
-  <a id="linkBrisanje" class="button">DA</a>
-  <a id="odustani" class="button">NE</a>
-  <button class="close-button" data-close aria-label="Close modal" type="button">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>

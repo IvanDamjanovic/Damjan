@@ -5,12 +5,7 @@ class Projekt
     public static function readAll()
     {
         $veza = DB::getInstanca();
-        $izraz = $veza->prepare('
-        
-        select * from projekt
-
-        
-        ');
+        $izraz = $veza->prepare('select * from projekt');
         $izraz->execute();
         return $izraz->fetchAll();
     }
@@ -18,37 +13,23 @@ class Projekt
     public static function read($sifra)
     {
         $veza = DB::getInstanca();
-        $izraz = $veza->prepare('
-        
-            select * from projekt 
-            where sifra=:sifra
-
-        ');
+        $izraz = $veza->prepare('select * from projekt
+        where sifra=:sifra');
         $izraz->execute(['sifra'=>$sifra]);
         return $izraz->fetch();
     }
-    
-    public static function ucitajVrste($sifraVrste)
-    {
-        $veza = DB::getInstanca();
-        $izraz = $veza->prepare('
-        
-        select * from vrsta where sifra=:sifra
-        
-        ');
-        $izraz->execute(['sifra'=>$sifraVrste]);
-        return $izraz->fetchAll();
-    }
-    
-    public static function create($istrazivac)
+
+    public static function create()
     {
         $veza = DB::getInstanca();
         $izraz=$veza->prepare('insert into projekt 
-        (naziv,istrazivac,brojvrsta) values 
-        (\'\',:istrazivac,0)');
-        $izraz->execute(['istrazivac' => $istrazivac]);  
-       return $veza->lastInsertId();
-
+        (naziv,istrazivac,vrsta) values 
+        (:naziv,:istrazivac,:vrsta)');
+        $izraz->execute([
+            'naziv' => $_POST['naziv'],
+            'istrazivac' => $_POST['istrazivac'],
+            'vrsta' => $_POST['vrsta'],
+        ]);
     }
 
     public static function delete()
@@ -65,19 +46,15 @@ class Projekt
         return true;
     }
 
-    public static function update()
-    {
-        if($_POST['istrazivac']=='0'){
-            $_POST['istrazivac']=null;
-       
+    public static function update(){
         $veza = DB::getInstanca();
         $izraz=$veza->prepare('update projekt 
         set naziv=:naziv,istrazivac=:istrazivac,
-        brojvrsta=:brojvrsta,
-         where sifra=:sifra');
-        $izraz->execute($_POST);
-        }
-    
+        vrsta=:vrsta where sifra=:sifra');
+        $izraz->execute([
+                'naziv' => $_POST['naziv'],
+                'istrazivac' => $_POST['istrazivac'],
+                'vrsta' => $_POST['vrsta'],
+        ]);
     }
-
 }
