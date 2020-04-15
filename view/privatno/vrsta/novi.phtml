@@ -11,13 +11,35 @@ action="/vrsta/dodajnovi">
     <input type="text" id="kategorija" name="kategorija" value="">
   </label>
 
-  <label>Istraživač
-    <input type="text" id="istrazivac" name="istrazivac" value="">
-  </label>
+  <label for="istrazivac">Odabrani istraživači</label>
+            <select name="istrazivac" id="istrazivac">
+                <option value="0">Odaberite istraživače</option>
+                <?php foreach($istrazivaci as $istrazivac): ?>
+                    <option <?php 
+                        if($istrazivac->sifra==$vrsta->istrazivac){
+                            echo 'selected="selected"';
+                        }
+                        
+                        ?> value="<?php echo $istrazivac->sifra ?>">
+                        <?php echo $istrazivac->ime . ' ' . $istrazivac->prezime ?>
+                    </option>
+                <?php endforeach;?>
+            </select>
 
-  <label>Ugroženost
-    <input type="text" id="ugrozenost" name="ugrozenost" value="">
-  </label>
+  <label for="ugrozenost">Odabrati ugroženost</label>
+            <select name="ugrozenost" id="ugrozenost">
+                <option value="0">Odaberite ugroženost</option>
+                <?php foreach($ugrozenosti as $ugrozenost): ?>
+                    <option <?php 
+                        if($ugrozenost->sifra==$vrsta->ugrozenost){
+                            echo 'selected="selected"';
+                        }
+                        
+                        ?> value="<?php echo $ugrozenost->sifra ?>">
+                        <?php echo $ugrozenost->sifra ?>
+                    </option>
+                <?php endforeach;?>
+            </select>
 
 
 
