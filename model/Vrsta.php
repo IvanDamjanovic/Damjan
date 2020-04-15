@@ -69,10 +69,8 @@ class Vrsta
     {
         $veza = DB::getInstanca();
         $izraz = $veza->prepare('
-        select a.sifra, a.ime, b.ime, 
-        b.kategorija, b.istrazivac, b.ugrozenost
-        from vrsta a full outer join vrsta b  on a.vrsta=b.sifra
-        where a.sifra=:sifra
+        select * from vrsta
+        where sifra=:sifra
         ');
         $izraz->execute(['sifra'=>$sifra]);
         return $izraz->fetch();
@@ -142,8 +140,10 @@ class Vrsta
         $veza = DB::getInstanca();
         $veza->beginTransaction();
 
-        $izraz=$veza->prepare('select vrsta
-            where sifra=:sifra');
+        $izraz=$veza->prepare('
+        select * from vrsta
+        where sifra=:sifra
+        ');
             $izraz->execute([
                 'sifra' => $_POST['sifra']
             ]);
@@ -152,14 +152,11 @@ class Vrsta
         
         
         $izraz=$veza->prepare('update vrsta 
-        set ime=:ime, kategorija=:kategorija,
-        istrazivac=:istrazivac,ugrozenost=:ugrozenost
+        set ime=:ime, kategorija=:kategorija
         where sifra=:sifra');
         $izraz->execute([
             'ime' => $_POST['ime'],
             'kategorija' => $_POST['kategorija'],
-            'istrazivac' => $_POST['istrazivac'],
-            'ugrozenost' => $_POST['ugrozenost'],
             'sifra' => $_POST['sifra']
         ]); 
 
