@@ -7,14 +7,12 @@ class Vrsta
     {
         $veza = DB::getInstanca();
         $izraz = $veza->prepare('
-            select a.sifra, b.ime,b.email,
-            b.oib from vrsta a inner join ime b
-            on a.ime=b.sifra
-            where concat(b.ime,\' \',) like :uvjet
-            order by b.ime
+
+        select * from vrsta 
+
         ');
 
-        $izraz->execute(['uvjet'=>'%' . $_GET['uvjet'] . '%']);
+        $izraz->execute();
         return $izraz->fetchAll();
     }
 
@@ -27,7 +25,7 @@ class Vrsta
         select * from vrsta 
 
         ');
-        $izraz->bindParam('uvjet',$uvjet);
+        //$izraz->bindParam('uvjet',$uvjet);
         $izraz->execute();
         $ukupnoRezultata=$izraz->fetchColumn();
         return ceil($ukupnoRezultata / App::config('rezultataPoStranici'));
@@ -60,13 +58,7 @@ class Vrsta
         $veza = DB::getInstanca();
         $izraz = $veza->prepare('
 
-        select a.sifra, a.ime, b.ime, 
-        b.kategorija, b.istrazivac, b.ugrozenost, 
-        count(c.projekt) as ukupno
-        from vrsta a left join vrsta b  on a.vrsta=b.sifra
-        left join vrsta c on a.sifra=c.vrsta
-        group by a.sifra, a.ime, b.ime, 
-        b.kategorija, b.istrazivac, b.ugrozenost
+        select * from vrsta
 
         ');
         $izraz->execute();
@@ -79,7 +71,7 @@ class Vrsta
         $izraz = $veza->prepare('
         select a.sifra, a.ime, b.ime, 
         b.kategorija, b.istrazivac, b.ugrozenost
-        from vrsta a left join vrsta b  on a.vrsta=b.sifra
+        from vrsta a full outer join vrsta b  on a.vrsta=b.sifra
         where a.sifra=:sifra
         ');
         $izraz->execute(['sifra'=>$sifra]);
