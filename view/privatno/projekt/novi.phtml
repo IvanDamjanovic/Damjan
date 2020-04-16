@@ -4,43 +4,35 @@ action="/projekt/dodajnovi">
     <input type="text" id="naziv" name="naziv" value="">
   </label>
   
-  <label for="istrazivac">Istrazivac</label>
-      <select name="istrazivac" id="istrazivac">
-          <option value="0">Odaberite istraživača</option>
-          <?php foreach($istrazivaci as $istrazivac): ?>
-              <option <?php 
-                   if($istrazivac->sifra==$projekt->istrazivac){
-                       echo 'selected="selected"';
-                  }
-                  
-                   ?> value="<?php echo $istrazivac->sifra ?>">
-                  <?php echo $istrazivac->ime . ' ' . $istrazivac->prezime ?>
-              </option>
-          <?php endforeach;?>
-      </select>
+  <label>Istraživač
+            <select name="istrazivac" id="istrazivac">
+                <option value="0">Odaberite istraživača</option>
+                <?php foreach($istrazivaci as $istrazivac): ?>
+                    <option value="<?php echo $istrazivac->sifra ?>">
+                        <?php echo $istrazivac->ime . ' ' . $istrazivac->prezime ?>
+                    </option>
+                <?php endforeach;?>
+            </select>  
+  </label>
 
-      <label for="vrsta">Vrsta</label>
-      <select name="vrsta" id="vrsta">
-          <option value="0">Odaberite vrstu</option>
-          <?php foreach($vrste as $vrsta): ?>
-              <option <?php 
-                   if($vrsta->sifra==$projekt->vrsta){
-                       echo 'selected="selected"';
-                  }
-                  
-                   ?> value="<?php echo $vrsta->sifra ?>">
-                  <?php echo $vrsta->šifra ?>
-              </option>
-          <?php endforeach;?>
-      </select>
+  <label>Vrsta
+            <select name="vrsta" id="vrsta">
+                <option value="0">Odaberite vrstu</option>
+                <?php foreach($vrste as $vrstavrsta): ?>
+                    <option value="<?php echo $vrsta->sifra ?>">
+                        <?php echo $vrsta->ime ?>
+                    </option>
+                <?php endforeach;?>
+            </select>
+  </label>
 
 
   <div class="grid-x grid-margin-x">
     <div class="large-6 cell">
-      <a href="/smjer/index" class="alert button expanded">Odustani</a>
+      <a href="/projekt/index" class="alert button expanded">Odustani</a>
     </div>
     <div class="large-6 cell">
-      <input type="submit" class="button expanded" value="Dodaj smjer"></input>
+      <input type="submit" class="button expanded" value="Dodaj projekt"></input>
     </div>
   </div>
 </form>

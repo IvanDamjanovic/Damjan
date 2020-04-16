@@ -9,14 +9,17 @@ class ProjektController extends AutorizacijaController
     public function index()
     {
         $this->view->render($this->viewDir . 'index',[
-         'podaci'=>Projekt::readAll()
+         'podaci'=>Projekt::readAll(),
+         'istrazivaci' => Istrazivac::readAll()
      ]);
     }
 
     public function novi()
     {
         $this->view->render($this->viewDir . 'novi',
-            ['poruka'=>'Popunite sve tražene podatke']
+            ['istrazivac'=>Istrazivac::readAll(),
+            'vrste' => Vrsta::readAll(),
+            'poruka'=>'Popunite sve tražene podatke']
         );
     }
 
@@ -44,8 +47,9 @@ class ProjektController extends AutorizacijaController
             exit;
         }
 
-        $this->view->render($this->viewDir . 'promjena',
-            ['projekt'=>$projekt,
+        $this->view->render($this->viewDir . 'index',[
+            'istrazivac' => Istrazivac::readAll(),
+            'vrsta' => Vrsta::readAll(),
                 'poruka'=>'Promjenite željene podatke']
         );
      
@@ -55,6 +59,6 @@ class ProjektController extends AutorizacijaController
     {
         // I OVDJE DOĐU SILNE KONTROLE
         Projekt::update();
-        header('location: /projekt/index');
+        header('location: /smjer/index');
     }
 }

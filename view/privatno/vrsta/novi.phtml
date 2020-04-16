@@ -26,23 +26,9 @@ action="/vrsta/dodajnovi">
                 <?php endforeach;?>
             </select>
 
-  <label for="ugrozenost">Odabrati ugroženost</label>
-            <select name="ugrozenost" id="ugrozenost">
-                <option value="0">Odaberite ugroženost</option>
-                <?php foreach($ugrozenosti as $ugrozenost): ?>
-                    <option <?php 
-                        if($ugrozenost->sifra==$vrsta->ugrozenost){
-                            echo 'selected="selected"';
-                        }
-                        
-                        ?> value="<?php echo $ugrozenost->sifra ?>">
-                        <?php echo $ugrozenost->sifra ?>
-                    </option>
-                <?php endforeach;?>
-            </select>
-
-
-
+  <label>Ugroženost
+    <input type="text" id="ugrozenost" name="ugrozenost" value="">
+  </label>
 
   <div class="grid-x grid-margin-x">
     <div class="large-6 cell">
