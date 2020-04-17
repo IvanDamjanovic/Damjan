@@ -43,15 +43,17 @@ create table vrsta(
     ugrozenost          int
 );
 
-create table istrazivanje(
+create table projekt(
+    sifra               int not null primary key auto_increment,
+    naziv               varchar(50) not null,
     vrsta               int not null,
     istrazivac          int not null
 );
 
 alter table vrsta add foreign key (istrazivac) references istrazivac(sifra);
 
-alter table istrazivanje add foreign key (vrsta) references vrsta(sifra);
-alter table istrazivanje add foreign key (istrazivac) references istrazivac(sifra);
+alter table projekt add foreign key (vrsta) references vrsta(sifra);
+alter table projekt add foreign key (istrazivac) references istrazivac(sifra);
 
 
 describe vrsta;

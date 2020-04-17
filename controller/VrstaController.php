@@ -60,7 +60,7 @@ class VrstaController extends AutorizacijaController
     public function novi()
     {
         $this->view->render($this->viewDir . 'novi',
-            ['istrazivac'=>Istrazivac::readAll(),
+            ['istrazivaci'=>Istrazivac::readAll(),
             'poruka'=>'Popunite sve tražene podatke']
         );
     }
@@ -91,7 +91,7 @@ class VrstaController extends AutorizacijaController
 
         $this->view->render($this->viewDir . 'promjena',
             ['vrsta'=>$vrsta,
-            'istrazivac' => Istrazivac::readAll(),
+            'istrazivaci' => Istrazivac::readAll(),
                 'poruka'=>'Promjenite željene podatke']
         );
      

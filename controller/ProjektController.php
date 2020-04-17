@@ -17,7 +17,7 @@ class ProjektController extends AutorizacijaController
     public function novi()
     {
         $this->view->render($this->viewDir . 'novi',
-            ['istrazivac'=>Istrazivac::readAll(),
+            ['istrazivaci'=>Istrazivac::readAll(),
             'vrste' => Vrsta::readAll(),
             'poruka'=>'Popunite sve tražene podatke']
         );
