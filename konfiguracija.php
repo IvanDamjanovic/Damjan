@@ -7,7 +7,7 @@ return [
     'rezultataPoStranici' => 6,
     'db' =>[
         'server' => 'localhost',
-        'baza' => 'redbook',
+        'baza' => 'redbook1',
         'korisnik' => 'edunova',
         'lozinka' => 'edunova'
     ]
@@ -20,7 +20,7 @@ return [
     'rezultataPoStranici' => 6,
     'db' =>[
         'server' => 'localhost',
-        'baza' => 'eskulap_redbook',
+        'baza' => 'eskulap_redbook1',
         'korisnik' => 'eskulap_edunova',
         'lozinka' => 'edunova'
     ]
