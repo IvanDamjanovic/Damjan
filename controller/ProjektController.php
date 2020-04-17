@@ -48,8 +48,8 @@ class ProjektController extends AutorizacijaController
         }
 
         $this->view->render($this->viewDir . 'index',[
-            'istrazivac' => Istrazivac::readAll(),
-            'vrsta' => Vrsta::readAll(),
+            'istrazivaci' => Istrazivac::readAll(),
+            'vrste' => Vrsta::readAll(),
                 'poruka'=>'Promjenite željene podatke']
         );
      
@@ -59,6 +59,6 @@ class ProjektController extends AutorizacijaController
     {
         // I OVDJE DOĐU SILNE KONTROLE
         Projekt::update();
-        header('location: /smjer/index');
+        header('location: /projekt/index');
     }
 }
