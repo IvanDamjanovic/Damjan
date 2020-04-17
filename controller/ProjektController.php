@@ -47,7 +47,8 @@ class ProjektController extends AutorizacijaController
             exit;
         }
 
-        $this->view->render($this->viewDir . 'index',[
+        $this->view->render($this->viewDir . 'promjena',[
+            'projekt' => $projekt,
             'istrazivaci' => Istrazivac::readAll(),
             'vrste' => Vrsta::readAll(),
                 'poruka'=>'Promjenite željene podatke']
