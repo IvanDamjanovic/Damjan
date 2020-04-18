@@ -108,6 +108,14 @@ class IndexController extends Controller
         echo json_encode($niz);
     }
 
+    public function gost()
+    {
+        $gost=Istrazivac::read(1);
+        $_SESSION['istrazivac']=$gost;
+        $npc = new NadzornaplocaController();
+        $npc->index();
+    } 
+
     public function test()
     {
      echo password_hash('e',PASSWORD_BCRYPT);

@@ -79,7 +79,6 @@ class Vrsta
     public static function create()
     {
         $veza = DB::getInstanca();
-        $veza->beginTransaction();
 
         $izraz=$veza->prepare('insert into vrsta 
         (ime,kategorija,istrazivac,ugrozenost) values 
@@ -91,19 +90,6 @@ class Vrsta
             'ugrozenost' => $_POST['ugrozenost']
         ]); 
 
-        $zadnjaSifra = $veza->lastInsertId();
-
-        
-        $izraz=$veza->prepare('insert into vrsta 
-        (ime,kategorija) values 
-        (:ime,:kategorija)');
-        $izraz->execute([
-            'ime' => $_POST['ime'],
-            'kategorija' => $_POST['kategorija']
-        ]); 
-        
-        
-        $veza->commit();
     }
 
     public static function delete()
@@ -157,10 +143,22 @@ class Vrsta
         $izraz->execute([
             'ime' => $_POST['ime'],
             'kategorija' => $_POST['kategorija'],
-            'sifra' => $_POST['sifra']
+            'sifra' => $sifravrsta
         ]); 
 
+        $izraz=$veza->prepare('update vrsta 
+        set istrazivac=:istrazivac, ugrozenost=:ugrozenost
+        where sifra=:sifra');
+        $izraz->execute([
+            'sifra' => $_POST['sifra'],
+            'istrazivac' => $_POST['istrazivac'],
+            'ugrozenost' => $_POST['ugrozenost']
+        ]); 
+    
+        
         $veza->commit();
+
+
 
     }
 }

@@ -10,6 +10,7 @@
                 <?php echo APP::config('nazivAPP'); ?>
             </li>
             <li><a href="/">Početna</a></li>
+            <li><a href="/index/onama">O nama</a></li>
             <?php if(isset($_SESSION['istrazivac'])):?>
             <li><a href="/nadzornaploca/index">Nadzorna ploča</a></li>
                 
@@ -26,11 +27,9 @@
                 <?php else:?>
                     <li><a href="/nadzornaploca/profil">Profil</a></li>
                 <?php endif;?>
+                <li><a href="/index/era">ERA</a></li>
             <?php endif;?>
-            <?php if(isset($_SESSION['istrazivac']) && $_SESSION['istrazivac']->uloga!=='admin'):?>
-                <li><a href="/index/onama">O nama</a></li>
-                <?php endif;?>
-                
+
         </ul>
     </div>
     <div class="top-bar-right">
@@ -39,6 +38,9 @@
         <?php if(!isset($_SESSION['istrazivac'])): ?>
                 <li>
                 <a href="/index/prijava">Prijava</a>
+                </li>
+                <li>
+                <a href="/index/gost">Gost</a>
                 </li>
                 <li>
                 <a href="/index/registracija">Registracija</a>
