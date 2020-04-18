@@ -11,6 +11,11 @@ class IndexController extends Controller
         ]);
     }
 
+    public function era()
+    {
+        $this->view->render('era');
+    }
+
     public function autorizacija()
     {
         if(!isset($_POST['email']) || 
