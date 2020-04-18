@@ -5,6 +5,7 @@
     <td style="text-align: right;" title="vrsta"><?php echo $red->vrsta?></td>
     <td>
         <a href="/projekt/promjena?sifra=<?php echo $red->sifra?>"><i title="Promjeni" class="fas fa-edit fa-2x"></i></a> 
-        <a href="/projekt/obrisi?sifra=<?php echo $red->sifra?>"><i title="Obriši" class="fas fa-trash fa-2x" style="color: red;"></i></a>
+        <a onclick="return confirm('Sigurno obrisati <?php echo $red->sifra ?> ');" href="/projekt/obrisi?sifra=<?php echo $red->sifra ?>"><i title="Obriši" class="fas fa-trash fa-2x" style="color: red;"></i></a>
     </td>
 </tr>
+
