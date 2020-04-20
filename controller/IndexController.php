@@ -11,6 +11,11 @@ class IndexController extends Controller
         ]);
     }
 
+    public function profil()
+    {
+        $this->view->render('profil');
+    }
+
     public function era()
     {
         $this->view->render('era');
