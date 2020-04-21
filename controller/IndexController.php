@@ -6,7 +6,11 @@ class IndexController extends Controller
     public function prijava()
     {
         $this->view->render('prijava',[
-            'poruka'=>'Unesite pristupne podatke',
+            'poruka'=>'Unesite pristupne podatke.
+            <br/>
+            Email: admin@redbook.hr
+            <br/>
+            Password: e',
             'email'=>''
         ]);
     }
@@ -142,7 +146,8 @@ class IndexController extends Controller
     public function zavrsiregistraciju()
     {
         Istrazivac::zavrsiregistraciju($_GET['id']);
-        $this->view->render('prijava');
+        $this->view->render('prijava',['email'=>'', 
+        'poruka'=>'Unesite tražene podatke']);
     }
 
     public function email()
