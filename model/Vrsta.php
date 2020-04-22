@@ -46,7 +46,10 @@ class Vrsta
         //odrediti broj prikaza na jednoj stranici
         $izraz = $veza->prepare('
         
-        select * from vrsta
+        select a.sifra, a.ime, a.kategorija, a.ugrozenost, 
+        concat(b.ime, \' \', b.prezime) as istrazivac
+        from vrsta a inner join 
+        istrazivac b on a.istrazivac=b.sifra 
 
         ');
         //$izraz->bindParam('uvjet',$uvjet);
